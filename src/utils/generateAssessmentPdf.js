@@ -1,0 +1,154 @@
+import { jsPDF } from 'jspdf';
+
+/**
+ * generateAssessmentPdf
+ *
+ * Renders the professional pre-screening assessment as a downloadable
+ * A4 PDF. Deliberately print-friendly (white paper, dark ink) rather
+ * than a copy of the app's dark neon theme — this document's job is to
+ * be attached to emails and printed into project files, not to look
+ * like Mission Control.
+ */
+
+const PAGE_WIDTH = 210;
+const MARGIN = 18;
+const CONTENT_WIDTH = PAGE_WIDTH - MARGIN * 2;
+
+const INK = { r: 24, g: 32, b: 44 };
+const MUTED = { r: 110, g: 122, b: 138 };
+const BRAND = { r: 0, g: 122, b: 153 };
+
+// Print-safe status colors (darker than the on-screen neon variants so
+// they hold up on paper and against white).
+const STATUS_COLORS = {
+  good: { r: 14, g: 138, b: 94 },
+  low: { r: 14, g: 138, b: 94 },
+  moderate: { r: 176, g: 121, b: 26 },
+  high: { r: 197, g: 48, b: 72 },
+};
+
+const REPORT_FIELDS = [
+  { key: 'airQuality', label: 'Air Quality' },
+  { key: 'waterStress', label: 'Water Stress' },
+  { key: 'greenCover', label: 'Green Cover' },
+  { key: 'landCondition', label: 'Land Condition' },
+  { key: 'biodiversitySensitivity', label: 'Biodiversity Sensitivity' },
+  { key: 'climateRisk', label: 'Climate Risk' },
+];
+
+export function generateAssessmentPdf({ assessment, projectTypeLabel }) {
+  const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+
+  // --- Header band ---
+  doc.setFillColor(10, 15, 28);
+  doc.rect(0, 0, PAGE_WIDTH, 30, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(16);
+  doc.text('ECOSENTINEL', MARGIN, 13);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(160, 200, 215);
+  doc.text('Environmental Pre-Screening Assessment', MARGIN, 20);
+
+  // --- Meta block ---
+  let y = 42;
+  doc.setFontSize(9);
+  const metaRows = [
+    ['Location', `${assessment.locationName}`],
+    ['Project Type', projectTypeLabel],
+    ['Generated', new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })],
+  ];
+  metaRows.forEach(([label, value]) => {
+    doc.setTextColor(MUTED.r, MUTED.g, MUTED.b);
+    doc.text(label.toUpperCase(), MARGIN, y);
+    doc.setTextColor(INK.r, INK.g, INK.b);
+    doc.setFont('helvetica', 'bold');
+    doc.text(String(value), MARGIN + 38, y);
+    doc.setFont('helvetica', 'normal');
+    y += 6.5;
+  });
+
+  // --- Indicators table ---
+  y += 6;
+  doc.setTextColor(BRAND.r, BRAND.g, BRAND.b);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(11);
+  doc.text('Environmental Indicators', MARGIN, y);
+  y += 3;
+  doc.setDrawColor(220, 226, 233);
+  doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
+  y += 8;
+
+  const BAR_X = MARGIN + 62;
+  const BAR_WIDTH = 70;
+  const VALUE_X = BAR_X + BAR_WIDTH + 8;
+  const STATUS_X = VALUE_X + 18;
+
+  REPORT_FIELDS.forEach((field) => {
+    const data = assessment[field.key];
+    if (!data) return;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9.5);
+    doc.setTextColor(INK.r, INK.g, INK.b);
+    doc.text(field.label, MARGIN, y);
+
+    // Value bar: light track + status-colored fill, 0-100 scale
+    const status = data.status ?? 'moderate';
+    const statusColor = STATUS_COLORS[status] ?? STATUS_COLORS.moderate;
+    doc.setFillColor(238, 241, 245);
+    doc.roundedRect(BAR_X, y - 3.2, BAR_WIDTH, 3.6, 1.2, 1.2, 'F');
+    doc.setFillColor(statusColor.r, statusColor.g, statusColor.b);
+    const fillWidth = Math.max(3.6, (Math.min(data.value, 100) / 100) * BAR_WIDTH);
+    doc.roundedRect(BAR_X, y - 3.2, fillWidth, 3.6, 1.2, 1.2, 'F');
+
+    doc.setFont('helvetica', 'bold');
+    doc.text(`${data.value}${data.unit ? ` ${data.unit}` : ''}`, VALUE_X, y);
+
+    if (data.status) {
+      doc.setFontSize(8);
+      doc.setTextColor(statusColor.r, statusColor.g, statusColor.b);
+      doc.text(data.status.toUpperCase(), STATUS_X, y);
+    }
+
+    y += 9.5;
+  });
+
+  // --- Recommendation ---
+  y += 6;
+  doc.setTextColor(BRAND.r, BRAND.g, BRAND.b);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(11);
+  doc.text('Sustainability Recommendation', MARGIN, y);
+  y += 3;
+  doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
+  y += 8;
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(10);
+  doc.setTextColor(INK.r, INK.g, INK.b);
+  const recommendationLines = doc.splitTextToSize(assessment.recommendation, CONTENT_WIDTH);
+  doc.text(recommendationLines, MARGIN, y);
+  y += recommendationLines.length * 5.2 + 10;
+
+  // --- Disclaimer ---
+  doc.setFont('helvetica', 'italic');
+  doc.setFontSize(8);
+  doc.setTextColor(MUTED.r, MUTED.g, MUTED.b);
+  const disclaimer = doc.splitTextToSize(
+    'This pre-screening assessment is an early advisory overview generated from placeholder ' +
+      'environmental indicators. It does not replace the formal Environmental Impact Assessment ' +
+      'process required through PARIVESH 2.0.',
+    CONTENT_WIDTH
+  );
+  doc.text(disclaimer, MARGIN, y);
+
+  // --- Footer ---
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(7.5);
+  doc.text('Generated by EcoSentinel — AI-powered environmental intelligence', MARGIN, 287);
+
+  const safeLocation = assessment.locationName.replace(/[^a-z0-9]/gi, '-');
+  doc.save(`EcoSentinel_Assessment_${safeLocation}_${assessment.projectTypeId}.pdf`);
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore } from '@hooks/useAppStore';
 import { getProjectTypes, getProfessionalAssessment } from '@services/environmentalDataService';
+import { generateAssessmentPdf } from '@utils/generateAssessmentPdf';
 import Panel from '@components/HolographicPanels/Panel';
 import LocationSelector from '@components/Dashboard/LocationSelector';
 
@@ -158,6 +159,30 @@ export default function ProfessionalView() {
                 Assessment process required through PARIVESH 2.0.
               </p>
             </Panel>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55 }}
+              className="mt-8 flex justify-end"
+            >
+              <button
+                onClick={() =>
+                  generateAssessmentPdf({
+                    assessment,
+                    projectTypeLabel:
+                      projectTypes.find((t) => t.id === selectedProjectType)?.label ??
+                      selectedProjectType,
+                  })
+                }
+                className="glass-panel px-5 py-2.5 flex items-center gap-2.5 text-sm font-display tracking-wide text-mist border hover:border-emerald-glow/40 hover:shadow-glow-emerald transition-all duration-300"
+              >
+                <span className="text-emerald-glow" aria-hidden="true">
+                  ↓
+                </span>
+                Download PDF Report
+              </button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
