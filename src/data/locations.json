@@ -106,5 +106,113 @@
       "temperature": { "value": 19, "unit": "°C" },
       "humidity": { "value": 58, "unit": "%" }
     }
+  },
+  "kenya": {
+    "id": "kenya",
+    "name": "Kenya",
+    "capital": "Nairobi",
+    "lat": -0.0236,
+    "lng": 37.9062,
+    "environmentalScore": 71,
+    "scoreChangeMonthly": 2,
+    "indicators": {
+      "airQuality": { "value": 47, "unit": "AQI", "status": "moderate" },
+      "waterStress": { "value": 58, "unit": "index", "status": "moderate" },
+      "greenCover": { "value": 27, "unit": "%", "status": "low" },
+      "climateRisk": { "value": 69, "unit": "index", "status": "high" },
+      "biodiversity": { "value": 82, "unit": "index", "status": "high" },
+      "temperature": { "value": 24, "unit": "°C" },
+      "humidity": { "value": 60, "unit": "%" }
+    }
+  },
+  "norway": {
+    "id": "norway",
+    "name": "Norway",
+    "capital": "Oslo",
+    "lat": 60.472,
+    "lng": 8.4689,
+    "environmentalScore": 91,
+    "scoreChangeMonthly": 1,
+    "indicators": {
+      "airQuality": { "value": 18, "unit": "AQI", "status": "good" },
+      "waterStress": { "value": 12, "unit": "index", "status": "low" },
+      "greenCover": { "value": 61, "unit": "%", "status": "high" },
+      "climateRisk": { "value": 28, "unit": "index", "status": "low" },
+      "biodiversity": { "value": 58, "unit": "index", "status": "moderate" },
+      "temperature": { "value": 8, "unit": "°C" },
+      "humidity": { "value": 70, "unit": "%" }
+    }
+  },
+  "indonesia": {
+    "id": "indonesia",
+    "name": "Indonesia",
+    "capital": "Jakarta",
+    "lat": -0.7893,
+    "lng": 113.9213,
+    "environmentalScore": 64,
+    "scoreChangeMonthly": -4,
+    "indicators": {
+      "airQuality": { "value": 72, "unit": "AQI", "status": "high" },
+      "waterStress": { "value": 44, "unit": "index", "status": "moderate" },
+      "greenCover": { "value": 55, "unit": "%", "status": "high" },
+      "climateRisk": { "value": 76, "unit": "index", "status": "high" },
+      "biodiversity": { "value": 91, "unit": "index", "status": "high" },
+      "temperature": { "value": 28, "unit": "°C" },
+      "humidity": { "value": 82, "unit": "%" }
+    }
+  },
+  "canada": {
+    "id": "canada",
+    "name": "Canada",
+    "capital": "Ottawa",
+    "lat": 56.1304,
+    "lng": -106.3468,
+    "environmentalScore": 87,
+    "scoreChangeMonthly": 0,
+    "indicators": {
+      "airQuality": { "value": 24, "unit": "AQI", "status": "good" },
+      "waterStress": { "value": 18, "unit": "index", "status": "low" },
+      "greenCover": { "value": 49, "unit": "%", "status": "moderate" },
+      "climateRisk": { "value": 44, "unit": "index", "status": "moderate" },
+      "biodiversity": { "value": 66, "unit": "index", "status": "moderate" },
+      "temperature": { "value": 11, "unit": "°C" },
+      "humidity": { "value": 64, "unit": "%" }
+    }
+  },
+  "mexico": {
+    "id": "mexico",
+    "name": "Mexico",
+    "capital": "Mexico City",
+    "lat": 23.6345,
+    "lng": -102.5528,
+    "environmentalScore": 70,
+    "scoreChangeMonthly": -2,
+    "indicators": {
+      "airQuality": { "value": 61, "unit": "AQI", "status": "moderate" },
+      "waterStress": { "value": 67, "unit": "index", "status": "high" },
+      "greenCover": { "value": 33, "unit": "%", "status": "moderate" },
+      "climateRisk": { "value": 63, "unit": "index", "status": "moderate" },
+      "biodiversity": { "value": 77, "unit": "index", "status": "high" },
+      "temperature": { "value": 26, "unit": "°C" },
+      "humidity": { "value": 52, "unit": "%" }
+    }
+  },
+  "southafrica": {
+    "id": "southafrica",
+    "name": "South Africa",
+    "capital": "Pretoria",
+    "lat": -30.5595,
+    "lng": 22.9375,
+    "environmentalScore": 73,
+    "scoreChangeMonthly": 1,
+    "indicators": {
+      "airQuality": { "value": 49, "unit": "AQI", "status": "moderate" },
+      "waterStress": { "value": 72, "unit": "index", "status": "high" },
+      "greenCover": { "value": 29, "unit": "%", "status": "low" },
+      "climateRisk": { "value": 60, "unit": "index", "status": "moderate" },
+      "biodiversity": { "value": 74, "unit": "index", "status": "high" },
+      "temperature": { "value": 22, "unit": "°C" },
+      "humidity": { "value": 48, "unit": "%" }
+    }
   }
 }

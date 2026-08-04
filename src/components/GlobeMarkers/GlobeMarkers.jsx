@@ -7,7 +7,9 @@ import { geoToVector3 } from '@utils/geoToVector3';
 import { EARTH_RADIUS } from '@components/EarthScene/EarthMesh';
 import locationsData from '@data/locations.json';
 
-const MARKER_IDS = ['india', 'usa', 'brazil', 'germany', 'australia', 'japan'];
+// Derived from the data rather than hardcoded, so adding a location to
+// locations.json automatically places its marker on the globe.
+const MARKER_IDS = Object.keys(locationsData);
 
 /**
  * SingleMarker
