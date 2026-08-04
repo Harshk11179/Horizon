@@ -51,3 +51,13 @@ requests reading dev-server responses. This is a **dev-only** exposure
 (`vite@8.2.0`) is two majors ahead of what's pinned here. Not taking
 that jump without hand-verifying config compatibility first — flagging
 for a deliberate follow-up rather than an automatic force-upgrade.
+
+## jspdf (^4.2.1)
+
+Added for the Professional view's "Download PDF Report" button
+(`src/utils/generateAssessmentPdf.js`). Chosen over a print-stylesheet
+approach because the report needs to be a real downloadable artifact
+(attachable to emails, saved into project files) with its own
+print-friendly layout, independent of the app's dark neon theme.
+Pure client-side — no server round-trip, consistent with the
+frontend-only architecture.

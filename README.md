@@ -3,8 +3,8 @@
 An AI-powered environmental intelligence platform presented as an
 immersive, cinematic 3D experience: a real-time rotating Earth in deep
 space, six clickable country markers with holographic environmental
-readouts, and a Mission Control dashboard with dedicated Citizen and
-Professional views.
+readouts (now expanded to twelve locations), and a Mission Control
+dashboard with dedicated Citizen and Professional views.
 
 This is the **frontend only**. It runs entirely on local placeholder
 data and is architected so a FastAPI backend (see the project abstract)
@@ -30,8 +30,9 @@ EcoSentinel bridges two audiences on one platform:
 The landing experience is a full-screen, auto-orbiting 3D Earth with a
 moving day/night cycle, independently-rotating clouds, aurora, and a
 starfield. Scrolling zooms the camera toward the planet; clicking one
-of six country markers (India, USA, Brazil, Germany, Australia, Japan)
-flies the camera to that location and raises a holographic overlay of
+of the country markers (India, USA, Brazil, Germany, Australia, Japan,
+Kenya, Norway, Indonesia, Canada, Mexico, South Africa) flies the
+camera to that location and raises a holographic overlay of
 its environmental indicators. From there, the user can enter the full
 Mission Control dashboard.
 
@@ -133,7 +134,8 @@ ecosentinel/
     │   ├── usePointerPosition.js
     │   └── useScrollProgress.js
     ├── utils/
-    │   └── geoToVector3.js      # Lat/lng → 3D sphere position math
+    │   ├── geoToVector3.js      # Lat/lng → 3D sphere position math
+    │   └── generateAssessmentPdf.js  # jsPDF report for the Professional view
     └── components/
         ├── EarthScene/          # EarthMesh, CloudLayer, CameraRig, AuroraEffect, shader materials
         ├── ParticleSystem/      # Starfield, SpaceDust, Nebula
@@ -141,11 +143,12 @@ ecosentinel/
         ├── Hero/                # Landing hero, intro sequence, scroll parallax
         ├── LocationOverlay/     # Holographic indicator panel on marker selection
         ├── Navbar/
-        ├── Dashboard/           # MissionControlDashboard, LocationSelector, DashboardShell
+        ├── Dashboard/           # MissionControlDashboard, LocationSelector, DashboardShell, ComparisonView
         ├── Citizen/
         ├── Professional/
+        ├── Alerts/              # Live alerts feed panel (Mission Control)
         ├── HealthScore/         # The signature tick-mark gauge
-        ├── Timeline/
+        ├── Timeline/            # Multi-series 12-month trend chart
         ├── HolographicPanels/   # Shared glass-panel primitive
         └── Footer/
 ```
@@ -233,6 +236,7 @@ GET  /api/locations/:id                       -> getLocation(id)
 GET  /api/locations/:id/score                 -> getEnvironmentalScore(id)
 GET  /api/locations/:id/indicators            -> getIndicators(id)
 GET  /api/locations/:id/trend?range=12m       -> getTrendData(id, range)
+GET  /api/locations/:id/alerts                -> getActiveAlerts(id)
 GET  /api/citizen/suggestions?location=:id    -> getSuggestions(id)
 GET  /api/professional/project-types          -> getProjectTypes()
 POST /api/professional/assess                 -> getProfessionalAssessment(locationId, projectTypeId)
