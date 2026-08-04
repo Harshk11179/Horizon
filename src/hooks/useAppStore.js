@@ -26,6 +26,7 @@ export const DASHBOARD_VIEW = {
   MISSION_CONTROL: 'mission_control',
   CITIZEN: 'citizen',
   PROFESSIONAL: 'professional',
+  COMPARE: 'compare',
 };
 
 export const useAppStore = create((set) => ({

@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useAppStore, SCENE_PHASE, DASHBOARD_VIEW } from '@hooks/useAppStore';
 import MissionControlDashboard from './MissionControlDashboard';
+import ComparisonView from './ComparisonView';
 import CitizenView from '@components/Citizen/CitizenView';
 import ProfessionalView from '@components/Professional/ProfessionalView';
 import Footer from '@components/Footer/Footer';
@@ -9,6 +10,7 @@ const VIEW_TABS = [
   { id: DASHBOARD_VIEW.MISSION_CONTROL, label: 'Mission Control' },
   { id: DASHBOARD_VIEW.CITIZEN, label: 'Citizen' },
   { id: DASHBOARD_VIEW.PROFESSIONAL, label: 'Professional' },
+  { id: DASHBOARD_VIEW.COMPARE, label: 'Compare' },
 ];
 
 /**
@@ -74,6 +76,7 @@ export default function DashboardShell() {
               {activeDashboardView === DASHBOARD_VIEW.MISSION_CONTROL && <MissionControlDashboard />}
               {activeDashboardView === DASHBOARD_VIEW.CITIZEN && <CitizenView />}
               {activeDashboardView === DASHBOARD_VIEW.PROFESSIONAL && <ProfessionalView />}
+              {activeDashboardView === DASHBOARD_VIEW.COMPARE && <ComparisonView />}
             </motion.div>
           </AnimatePresence>
 
