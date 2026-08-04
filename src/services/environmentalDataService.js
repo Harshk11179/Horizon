@@ -14,6 +14,7 @@
  *   GET  /api/locations                        -> getAllLocations()
  *   GET  /api/locations/:id                     -> getLocation(id)
  *   GET  /api/locations/:id/trend?range=12m      -> getTrendData(id, range)
+ *   GET  /api/locations/:id/alerts               -> getActiveAlerts(id)
  *   GET  /api/citizen/suggestions?location=:id  -> getSuggestions(id)
  *   GET  /api/professional/project-types        -> getProjectTypes()
  *   POST /api/professional/assess               -> getProfessionalAssessment(locationId, projectTypeId)
@@ -30,6 +31,7 @@ import locationsData from '@data/locations.json';
 import trendsData from '@data/trends.json';
 import suggestionsData from '@data/suggestions.json';
 import projectTypesData from '@data/projectTypes.json';
+import alertsData from '@data/alerts.json';
 
 // Simulated network latency. Kept small and consistent so loading-state
 // UI (skeletons, fade-ins) gets exercised during development without
@@ -121,6 +123,51 @@ export async function getSuggestions(locationId) {
   const result = relevant.length > 0 ? relevant : suggestionsData.airQuality.slice(0, 3);
 
   return resolveAfterLatency(result);
+}
+
+/**
+ * Returns the active alert feed for a location: rule-derived alerts
+ * (an indicator in a concerning status raises its matching alert) plus
+ * platform-wide global notices. This mirrors the server-side alerting
+ * the FastAPI backend is expected to own eventually — the placeholder
+ * replicates the rule evaluation client-side, keyed off the same
+ * indicator statuses the rest of the UI already displays.
+ *
+ * "minutesAgo" is a stable pseudo-timestamp derived from the alert id,
+ * so the feed reads as live telemetry without changing on every render.
+ */
+function stableMinutesAgo(seed) {
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) {
+    hash = (hash * 31 + seed.charCodeAt(i)) % 997;
+  }
+  return (hash % 52) + 3;
+}
+
+const SEVERITY_ORDER = { critical: 0, warning: 1, info: 2 };
+
+export async function getActiveAlerts(locationId) {
+  const location = locationsData[locationId];
+  if (!location) return resolveAfterLatency([]);
+
+  const ruleAlerts = alertsData.rules
+    .filter((rule) => location.indicators[rule.indicator]?.status === rule.whenStatus)
+    .map((rule) => ({
+      id: `${locationId}-${rule.indicator}-${rule.whenStatus}`,
+      severity: rule.severity,
+      title: rule.title,
+      message: rule.message,
+      indicator: rule.indicator,
+    }));
+
+  const alerts = [...ruleAlerts, ...alertsData.global]
+    .map((alert) => ({ ...alert, minutesAgo: stableMinutesAgo(alert.id + locationId) }))
+    .sort(
+      (a, b) =>
+        SEVERITY_ORDER[a.severity] - SEVERITY_ORDER[b.severity] || a.minutesAgo - b.minutesAgo
+    );
+
+  return resolveAfterLatency(alerts);
 }
 
 /**

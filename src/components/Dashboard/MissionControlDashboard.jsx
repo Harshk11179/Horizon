@@ -5,6 +5,7 @@ import { getLocation } from '@services/environmentalDataService';
 import HealthScoreGauge from '@components/HealthScore/HealthScoreGauge';
 import Panel from '@components/HolographicPanels/Panel';
 import Timeline from '@components/Timeline/Timeline';
+import AlertsPanel from '@components/Alerts/AlertsPanel';
 import LocationSelector from './LocationSelector';
 
 const INDICATOR_META = [
@@ -163,12 +164,14 @@ export default function MissionControlDashboard() {
         </Panel>
       </div>
 
-      <Panel from="up" delay={0.5}>
+      <Panel from="up" delay={0.5} className="mb-10">
         <div className="font-mono text-[10px] uppercase tracking-wider text-mist-dim mb-4">
           12-Month Environmental Trend
         </div>
         <Timeline locationId={activeLocationId} />
       </Panel>
+
+      <AlertsPanel locationId={activeLocationId} />
     </div>
   );
 }

@@ -1,0 +1,60 @@
+{
+  "rules": [
+    {
+      "indicator": "airQuality",
+      "whenStatus": "high",
+      "severity": "critical",
+      "title": "Air Quality Alert",
+      "message": "Sustained hazardous AQI readings across regional monitoring stations. Sensitive groups should limit outdoor exposure."
+    },
+    {
+      "indicator": "airQuality",
+      "whenStatus": "moderate",
+      "severity": "warning",
+      "title": "Air Quality Advisory",
+      "message": "AQI trending above seasonal baseline in dense urban corridors."
+    },
+    {
+      "indicator": "waterStress",
+      "whenStatus": "high",
+      "severity": "warning",
+      "title": "Water Stress Warning",
+      "message": "Basin withdrawal rates exceeding sustainable recharge. Groundwater reserves under pressure."
+    },
+    {
+      "indicator": "climateRisk",
+      "whenStatus": "high",
+      "severity": "warning",
+      "title": "Elevated Climate Risk",
+      "message": "Composite climate risk index elevated — heat, flood, and storm exposure above regional norms."
+    },
+    {
+      "indicator": "greenCover",
+      "whenStatus": "low",
+      "severity": "info",
+      "title": "Low Green Cover",
+      "message": "Vegetation index below recommended threshold for the region's land area."
+    },
+    {
+      "indicator": "biodiversity",
+      "whenStatus": "low",
+      "severity": "info",
+      "title": "Biodiversity Watch",
+      "message": "Species richness index below continental baseline; habitat monitoring recommended."
+    }
+  ],
+  "global": [
+    {
+      "id": "global-sat-sync",
+      "severity": "info",
+      "title": "Satellite Sync Complete",
+      "message": "Earth observation constellation completed its latest full-surface scan. All indicator feeds nominal."
+    },
+    {
+      "id": "global-model-update",
+      "severity": "info",
+      "title": "Model Update Deployed",
+      "message": "Environmental scoring model recalibrated with the latest quarterly ground-truth dataset."
+    }
+  ]
+}
