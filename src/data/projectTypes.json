@@ -1,0 +1,36 @@
+{
+  "projectTypes": [
+    { "id": "highway", "label": "Highway / Road Infrastructure" },
+    { "id": "industrial", "label": "Industrial Zone" },
+    { "id": "township", "label": "Residential Township" },
+    { "id": "commercial", "label": "Commercial Complex" },
+    { "id": "energy", "label": "Energy / Power Plant" }
+  ],
+  "recommendationTemplates": {
+    "highway": {
+      "landCondition": { "value": 61, "status": "moderate" },
+      "biodiversitySensitivity": { "value": 55, "status": "moderate" },
+      "recommendation": "Route through already-fragmented land where feasible; plan wildlife crossings if biodiversity sensitivity exceeds moderate threshold."
+    },
+    "industrial": {
+      "landCondition": { "value": 48, "status": "moderate" },
+      "biodiversitySensitivity": { "value": 39, "status": "low" },
+      "recommendation": "Prioritize sites with existing industrial land-use history to avoid greenfield conversion; assess groundwater table before finalizing."
+    },
+    "township": {
+      "landCondition": { "value": 72, "status": "good" },
+      "biodiversitySensitivity": { "value": 61, "status": "moderate" },
+      "recommendation": "Preserve a minimum green-cover ratio in the master plan; evaluate local water table capacity against projected household density."
+    },
+    "commercial": {
+      "landCondition": { "value": 68, "status": "good" },
+      "biodiversitySensitivity": { "value": 34, "status": "low" },
+      "recommendation": "Favor infill development over peripheral expansion; incorporate permeable surfacing to manage stormwater runoff."
+    },
+    "energy": {
+      "landCondition": { "value": 44, "status": "moderate" },
+      "biodiversitySensitivity": { "value": 77, "status": "high" },
+      "recommendation": "Conduct an early habitat survey given elevated biodiversity sensitivity; consider alternative siting if within a designated ecological buffer zone."
+    }
+  }
+}

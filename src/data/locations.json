@@ -1,0 +1,110 @@
+{
+  "india": {
+    "id": "india",
+    "name": "India",
+    "capital": "New Delhi",
+    "lat": 20.5937,
+    "lng": 78.9629,
+    "environmentalScore": 82,
+    "scoreChangeMonthly": -3,
+    "indicators": {
+      "airQuality": { "value": 58, "unit": "AQI", "status": "moderate" },
+      "waterStress": { "value": 71, "unit": "index", "status": "high" },
+      "greenCover": { "value": 24, "unit": "%", "status": "low" },
+      "climateRisk": { "value": 66, "unit": "index", "status": "high" },
+      "biodiversity": { "value": 54, "unit": "index", "status": "moderate" },
+      "temperature": { "value": 32, "unit": "°C" },
+      "humidity": { "value": 68, "unit": "%" }
+    }
+  },
+  "usa": {
+    "id": "usa",
+    "name": "United States",
+    "capital": "Washington, D.C.",
+    "lat": 37.0902,
+    "lng": -95.7129,
+    "environmentalScore": 76,
+    "scoreChangeMonthly": 1,
+    "indicators": {
+      "airQuality": { "value": 42, "unit": "AQI", "status": "good" },
+      "waterStress": { "value": 48, "unit": "index", "status": "moderate" },
+      "greenCover": { "value": 34, "unit": "%", "status": "moderate" },
+      "climateRisk": { "value": 58, "unit": "index", "status": "moderate" },
+      "biodiversity": { "value": 61, "unit": "index", "status": "moderate" },
+      "temperature": { "value": 21, "unit": "°C" },
+      "humidity": { "value": 55, "unit": "%" }
+    }
+  },
+  "brazil": {
+    "id": "brazil",
+    "name": "Brazil",
+    "capital": "Brasília",
+    "lat": -14.235,
+    "lng": -51.9253,
+    "environmentalScore": 68,
+    "scoreChangeMonthly": -6,
+    "indicators": {
+      "airQuality": { "value": 38, "unit": "AQI", "status": "good" },
+      "waterStress": { "value": 29, "unit": "index", "status": "low" },
+      "greenCover": { "value": 59, "unit": "%", "status": "high" },
+      "climateRisk": { "value": 71, "unit": "index", "status": "high" },
+      "biodiversity": { "value": 88, "unit": "index", "status": "high" },
+      "temperature": { "value": 27, "unit": "°C" },
+      "humidity": { "value": 74, "unit": "%" }
+    }
+  },
+  "germany": {
+    "id": "germany",
+    "name": "Germany",
+    "capital": "Berlin",
+    "lat": 51.1657,
+    "lng": 10.4515,
+    "environmentalScore": 84,
+    "scoreChangeMonthly": 2,
+    "indicators": {
+      "airQuality": { "value": 31, "unit": "AQI", "status": "good" },
+      "waterStress": { "value": 22, "unit": "index", "status": "low" },
+      "greenCover": { "value": 42, "unit": "%", "status": "moderate" },
+      "climateRisk": { "value": 39, "unit": "index", "status": "low" },
+      "biodiversity": { "value": 57, "unit": "index", "status": "moderate" },
+      "temperature": { "value": 14, "unit": "°C" },
+      "humidity": { "value": 62, "unit": "%" }
+    }
+  },
+  "australia": {
+    "id": "australia",
+    "name": "Australia",
+    "capital": "Canberra",
+    "lat": -25.2744,
+    "lng": 133.7751,
+    "environmentalScore": 79,
+    "scoreChangeMonthly": -1,
+    "indicators": {
+      "airQuality": { "value": 22, "unit": "AQI", "status": "good" },
+      "waterStress": { "value": 63, "unit": "index", "status": "high" },
+      "greenCover": { "value": 45, "unit": "%", "status": "moderate" },
+      "climateRisk": { "value": 74, "unit": "index", "status": "high" },
+      "biodiversity": { "value": 79, "unit": "index", "status": "high" },
+      "temperature": { "value": 24, "unit": "°C" },
+      "humidity": { "value": 41, "unit": "%" }
+    }
+  },
+  "japan": {
+    "id": "japan",
+    "name": "Japan",
+    "capital": "Tokyo",
+    "lat": 36.2048,
+    "lng": 138.2529,
+    "environmentalScore": 81,
+    "scoreChangeMonthly": 0,
+    "indicators": {
+      "airQuality": { "value": 35, "unit": "AQI", "status": "good" },
+      "waterStress": { "value": 33, "unit": "index", "status": "low" },
+      "greenCover": { "value": 67, "unit": "%", "status": "high" },
+      "climateRisk": { "value": 62, "unit": "index", "status": "moderate" },
+      "biodiversity": { "value": 65, "unit": "index", "status": "moderate" },
+      "temperature": { "value": 19, "unit": "°C" },
+      "humidity": { "value": 58, "unit": "%" }
+    }
+  }
+}

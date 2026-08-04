@@ -1,0 +1,27 @@
+{
+  "airQuality": [
+    { "id": "aq-1", "text": "Check the local AQI before outdoor exercise on high-pollution days." },
+    { "id": "aq-2", "text": "Use public transit or carpool on days flagged 'moderate' or worse." },
+    { "id": "aq-3", "text": "Keep windows closed during peak traffic hours in dense urban areas." }
+  ],
+  "waterStress": [
+    { "id": "ws-1", "text": "Fix leaking taps — a single drip wastes over 3,000 gallons a year." },
+    { "id": "ws-2", "text": "Switch to drought-tolerant plants for outdoor landscaping." },
+    { "id": "ws-3", "text": "Install low-flow fixtures in high-use areas like kitchens and bathrooms." }
+  ],
+  "greenCover": [
+    { "id": "gc-1", "text": "Support or join local tree-planting and urban greening initiatives." },
+    { "id": "gc-2", "text": "Advocate for green roofs and vertical gardens in new construction." },
+    { "id": "gc-3", "text": "Visit and financially support nearby green spaces to sustain upkeep." }
+  ],
+  "climateRisk": [
+    { "id": "cr-1", "text": "Prepare a basic emergency kit if your region has rising climate risk." },
+    { "id": "cr-2", "text": "Reduce home energy use during peak grid-demand hours." },
+    { "id": "cr-3", "text": "Check whether your area has updated flood or heat advisory plans." }
+  ],
+  "biodiversity": [
+    { "id": "bd-1", "text": "Plant native species instead of ornamental non-natives in home gardens." },
+    { "id": "bd-2", "text": "Avoid pesticide use where it isn't strictly necessary." },
+    { "id": "bd-3", "text": "Support local wildlife corridors and habitat restoration groups." }
+  ]
+}

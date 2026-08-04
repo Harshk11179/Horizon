@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-void-700;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-void-950 text-mist font-body antialiased overflow-x-hidden;
+  }
+
+  ::selection {
+    @apply bg-neon-blue/30 text-mist;
+  }
+
+  /* Reduced motion: respected globally, per accessibility floor in the design skill */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Visible keyboard focus, required regardless of how quiet the visual theme is */
+  :focus-visible {
+    outline: 2px solid theme('colors.neon.blue');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-void-900/40 backdrop-blur-md border border-white/[0.08] rounded-2xl;
+  }
+
+  .glass-panel-strong {
+    @apply bg-void-900/70 backdrop-blur-lg border border-white/[0.1] rounded-2xl;
+  }
+
+  .text-glow-blue {
+    text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+  }
+
+  .text-glow-emerald {
+    text-shadow: 0 0 20px rgba(0, 255, 163, 0.5);
+  }
+
+  .border-glow-blue {
+    box-shadow:
+      inset 0 0 0 1px rgba(0, 217, 255, 0.25),
+      0 0 20px rgba(0, 217, 255, 0.15);
+  }
+
+  .mono-readout {
+    @apply font-mono tabular-nums tracking-tight;
+  }
+}
+
+/* Custom scrollbar — thin, matches the void/neon palette rather than default OS chrome */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #05070d;
+}
+::-webkit-scrollbar-thumb {
+  background: #161f35;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00a3c4;
+}
+
+/* Cursor glow layer — see hooks/useCursorGlow.js. Fixed, pointer-events none, follows via CSS custom properties for perf. */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 217, 255, 0.06) 0%, transparent 70%);
+  transform: translate(calc(var(--x, 0) - 200px), calc(var(--y, 0) - 200px));
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-glow {
+    display: none;
+  }
+}
