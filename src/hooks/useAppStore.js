@@ -59,6 +59,12 @@ export const useAppStore = create((set) => ({
   activeDashboardView: DASHBOARD_VIEW.MISSION_CONTROL,
   setActiveDashboardView: (view) => set({ activeDashboardView: view }),
 
+  // --- Transient toast notification (one at a time; ToastHost renders
+  //     and auto-dismisses it) ---
+  toast: null,
+  showToast: (toast) => set({ toast: { id: Date.now(), ...toast } }),
+  clearToast: () => set({ toast: null }),
+
   // --- Global scroll progress (0-1), read by EarthScene to drive the
   //     camera-fly-toward-Earth interpolation described in the brief.
   //     Written by the scroll-tracking hook, read by the 3D scene —

@@ -63,9 +63,15 @@ function IndicatorPanel({ meta, data, delay }) {
  * dashboard is never blank on first entry regardless of the path taken
  * to reach it. LocationSelector (below) lets them switch from there.
  */
+// Session-scoped memory of which locations already raised a score-drop
+// toast — module-level on purpose, so re-mounting the dashboard (tab
+// switches, dashboard exit/re-entry) doesn't repeat old notifications.
+const notifiedScoreDrops = new Set();
+
 export default function MissionControlDashboard() {
   const selectedLocationId = useAppStore((state) => state.selectedLocationId);
   const setSelectedLocationId = useAppStore((state) => state.setSelectedLocationId);
+  const showToast = useAppStore((state) => state.showToast);
   const [locationData, setLocationData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -78,12 +84,19 @@ export default function MissionControlDashboard() {
       if (!cancelled) {
         setLocationData(data);
         setLoading(false);
+        if (data && data.scoreChangeMonthly < 0 && !notifiedScoreDrops.has(data.id)) {
+          notifiedScoreDrops.add(data.id);
+          showToast({
+            tone: 'risk',
+            message: `${data.name}'s environmental score fell ${Math.abs(data.scoreChangeMonthly)} point${Math.abs(data.scoreChangeMonthly) === 1 ? '' : 's'} this month.`,
+          });
+        }
       }
     });
     return () => {
       cancelled = true;
     };
-  }, [activeLocationId]);
+  }, [activeLocationId, showToast]);
 
   if (loading || !locationData) {
     return (

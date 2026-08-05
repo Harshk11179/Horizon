@@ -5,6 +5,7 @@ import ComparisonView from './ComparisonView';
 import RankingsView from './RankingsView';
 import CitizenView from '@components/Citizen/CitizenView';
 import ProfessionalView from '@components/Professional/ProfessionalView';
+import ToastHost from '@components/Toast/ToastHost';
 import Footer from '@components/Footer/Footer';
 
 const VIEW_TABS = [
@@ -84,6 +85,7 @@ export default function DashboardShell() {
           </AnimatePresence>
 
           <Footer />
+          <ToastHost />
         </motion.div>
       )}
     </AnimatePresence>
