@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useScrollProgress } from '@hooks/useScrollProgress';
 import { usePointerPosition } from '@hooks/usePointerPosition';
 import { useKeyboardShortcuts } from '@hooks/useKeyboardShortcuts';
+import { useUrlSync } from '@hooks/useUrlSync';
 import EarthExperience from '@components/EarthScene/EarthExperience';
 
 /**
@@ -20,6 +21,7 @@ export default function App() {
   const scrollContainerRef = useRef(null);
   useScrollProgress(scrollContainerRef);
   useKeyboardShortcuts();
+  useUrlSync();
 
   return (
     <div ref={scrollContainerRef} className="relative min-h-screen bg-void-950">
