@@ -37,7 +37,19 @@ function IntroVeil() {
     const timers = Object.entries(INTRO_STAGES)
       .filter(([key]) => key !== 'BLACK')
       .map(([key, delay]) => setTimeout(() => setStage(key), delay));
-    return () => timers.forEach(clearTimeout);
+
+    // Hand the scene over to the interactive HERO phase once the veil
+    // has fully lifted. Guarded so a deep link (or fast user) that has
+    // already moved the phase past INTRO isn't yanked back to HERO.
+    const phaseTimer = setTimeout(() => {
+      const { scenePhase, setScenePhase } = useAppStore.getState();
+      if (scenePhase === SCENE_PHASE.INTRO) setScenePhase(SCENE_PHASE.HERO);
+    }, INTRO_STAGES.COMPLETE);
+
+    return () => {
+      timers.forEach(clearTimeout);
+      clearTimeout(phaseTimer);
+    };
   }, []);
 
   const veilOpacity = stage === 'BLACK' ? 1 : stage === 'STARS_REVEALED' ? 0.55 : 0;

@@ -37,11 +37,20 @@ export const useAppStore = create((set) => ({
   // --- Selected location (drives GlobeMarkers highlight, LocationOverlay,
   //     and pre-fills the professional/citizen views on entry) ---
   selectedLocationId: null,
+  // Selecting a location from the globe triggers the fly-to
+  // (LOCATION_FOCUS); selecting from within the dashboard keeps the
+  // dashboard open and just swaps its data — otherwise the dashboard's
+  // own LocationSelector would eject the user back to the globe.
   setSelectedLocationId: (id) =>
-    set({
+    set((state) => ({
       selectedLocationId: id,
-      scenePhase: id ? SCENE_PHASE.LOCATION_FOCUS : SCENE_PHASE.HERO,
-    }),
+      scenePhase:
+        state.scenePhase === SCENE_PHASE.DASHBOARD
+          ? state.scenePhase
+          : id
+            ? SCENE_PHASE.LOCATION_FOCUS
+            : SCENE_PHASE.HERO,
+    })),
   clearSelectedLocation: () =>
     set({ selectedLocationId: null, scenePhase: SCENE_PHASE.HERO }),
 
