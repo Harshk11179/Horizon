@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { useAppStore } from '@hooks/useAppStore';
 import { getTrendData } from '@services/environmentalDataService';
 
 const CHART_WIDTH = 800;
@@ -35,6 +36,7 @@ export default function Timeline({ locationId }) {
   const [loading, setLoading] = useState(true);
   const [hiddenSeries, setHiddenSeries] = useState(() => new Set());
   const [showTable, setShowTable] = useState(false);
+  const reducedMotion = useAppStore((state) => state.reducedMotion);
 
   useEffect(() => {
     let cancelled = false;
@@ -283,8 +285,9 @@ export default function Timeline({ locationId }) {
               );
             })}
 
-            {/* Moving particle along the primary path */}
-            {scoreSeries && (
+            {/* Moving particle along the primary path (decorative —
+                dropped under reduced motion) */}
+            {scoreSeries && !reducedMotion && (
               <circle r="4" fill="#00FFA3">
                 <animateMotion dur="4s" repeatCount="indefinite" path={scoreSeries.pathD} />
               </circle>

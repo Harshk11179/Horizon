@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAppStore, DASHBOARD_VIEW, SCENE_PHASE } from '@hooks/useAppStore';
+import SettingsMenu from './SettingsMenu';
 
 const NAV_LINKS = [
   { label: 'Home', phase: SCENE_PHASE.HERO },
@@ -70,18 +71,21 @@ export default function Navbar() {
           EcoSentinel
         </button>
 
-        <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => handleNavClick(link)}
-              className={`font-body text-sm tracking-wide transition-colors duration-300 ${
-                scenePhase === link.phase ? 'text-neon-blue' : 'text-mist-dim hover:text-mist'
-              }`}
-            >
-              {link.label}
-            </button>
-          ))}
+        <div className="flex items-center gap-3 md:gap-8">
+          <div className="hidden md:flex items-center gap-8">
+            {NAV_LINKS.map((link) => (
+              <button
+                key={link.label}
+                onClick={() => handleNavClick(link)}
+                className={`font-body text-sm tracking-wide transition-colors duration-300 ${
+                  scenePhase === link.phase ? 'text-neon-blue' : 'text-mist-dim hover:text-mist'
+                }`}
+              >
+                {link.label}
+              </button>
+            ))}
+          </div>
+          <SettingsMenu />
         </div>
       </div>
     </motion.nav>

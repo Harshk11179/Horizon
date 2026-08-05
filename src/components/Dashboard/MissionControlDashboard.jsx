@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAppStore } from '@hooks/useAppStore';
 import { getLocation } from '@services/environmentalDataService';
+import { formatTemperature } from '@utils/formatTemperature';
 import HealthScoreGauge from '@components/HealthScore/HealthScoreGauge';
 import Panel from '@components/HolographicPanels/Panel';
 import Timeline from '@components/Timeline/Timeline';
@@ -72,6 +73,7 @@ export default function MissionControlDashboard() {
   const selectedLocationId = useAppStore((state) => state.selectedLocationId);
   const setSelectedLocationId = useAppStore((state) => state.setSelectedLocationId);
   const showToast = useAppStore((state) => state.showToast);
+  const temperatureUnit = useAppStore((state) => state.temperatureUnit);
   const [locationData, setLocationData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -159,12 +161,18 @@ export default function MissionControlDashboard() {
           </div>
           <div className="flex items-center gap-8 mt-2">
             <div>
-              <span className="font-mono text-2xl text-mist tabular-nums">
-                {locationData.indicators.temperature.value}
-              </span>
-              <span className="font-mono text-sm text-mist-dim ml-1">
-                {locationData.indicators.temperature.unit}
-              </span>
+              {(() => {
+                const temp = formatTemperature(
+                  locationData.indicators.temperature.value,
+                  temperatureUnit
+                );
+                return (
+                  <>
+                    <span className="font-mono text-2xl text-mist tabular-nums">{temp.value}</span>
+                    <span className="font-mono text-sm text-mist-dim ml-1">{temp.unit}</span>
+                  </>
+                );
+              })()}
             </div>
             <div>
               <span className="font-mono text-2xl text-mist tabular-nums">

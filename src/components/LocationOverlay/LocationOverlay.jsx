@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore, SCENE_PHASE, DASHBOARD_VIEW } from '@hooks/useAppStore';
 import { getLocation } from '@services/environmentalDataService';
+import { formatTemperature } from '@utils/formatTemperature';
 
 const INDICATOR_LABELS = {
   airQuality: 'Air Quality',
@@ -30,8 +31,14 @@ const STATUS_COLOR = {
  * look like a single stacked column.
  */
 function IndicatorCard({ indicatorKey, data, index, total }) {
+  const temperatureUnit = useAppStore((state) => state.temperatureUnit);
   const label = INDICATOR_LABELS[indicatorKey] ?? indicatorKey;
   const statusClass = data.status ? STATUS_COLOR[data.status] ?? STATUS_COLOR.moderate : 'text-mist border-white/20';
+
+  const display =
+    indicatorKey === 'temperature'
+      ? formatTemperature(data.value, temperatureUnit)
+      : { value: data.value, unit: data.unit };
 
   // Fan-out offset: cards nearer the center of the row sit lower/closer,
   // outer cards sit slightly higher — evokes them rising from a curved
@@ -51,8 +58,8 @@ function IndicatorCard({ indicatorKey, data, index, total }) {
         {label}
       </div>
       <div className="font-mono text-xl font-medium tabular-nums">
-        {data.value}
-        <span className="text-xs ml-0.5 opacity-60">{data.unit}</span>
+        {display.value}
+        <span className="text-xs ml-0.5 opacity-60">{display.unit}</span>
       </div>
     </motion.div>
   );

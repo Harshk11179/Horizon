@@ -30,6 +30,37 @@ export const DASHBOARD_VIEW = {
   RANKINGS: 'rankings',
 };
 
+const SETTINGS_KEY = 'ecosentinel-settings';
+
+function loadStoredSettings() {
+  try {
+    return JSON.parse(window.localStorage.getItem(SETTINGS_KEY)) ?? {};
+  } catch {
+    return {};
+  }
+}
+
+function persistSetting(key, value) {
+  try {
+    window.localStorage.setItem(
+      SETTINGS_KEY,
+      JSON.stringify({ ...loadStoredSettings(), [key]: value })
+    );
+  } catch {
+    // Storage unavailable (private mode etc.) — setting still applies
+    // for this session, it just won't survive a reload.
+  }
+}
+
+const storedSettings = loadStoredSettings();
+
+// Reduced motion defaults to the OS-level preference unless the user
+// has explicitly chosen otherwise in the app's own settings.
+const systemPrefersReducedMotion =
+  typeof window !== 'undefined' &&
+  typeof window.matchMedia === 'function' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 export const useAppStore = create((set) => ({
   // --- Scene / camera phase ---
   scenePhase: SCENE_PHASE.INTRO,
@@ -71,6 +102,18 @@ export const useAppStore = create((set) => ({
   searchOpenSignal: 0,
   requestSearchOpen: () =>
     set((state) => ({ searchOpenSignal: state.searchOpenSignal + 1 })),
+
+  // --- User settings, persisted to localStorage ---
+  temperatureUnit: storedSettings.temperatureUnit ?? 'C',
+  setTemperatureUnit: (unit) => {
+    persistSetting('temperatureUnit', unit);
+    set({ temperatureUnit: unit });
+  },
+  reducedMotion: storedSettings.reducedMotion ?? systemPrefersReducedMotion,
+  setReducedMotion: (value) => {
+    persistSetting('reducedMotion', value);
+    set({ reducedMotion: value });
+  },
 
   // --- Global scroll progress (0-1), read by EarthScene to drive the
   //     camera-fly-toward-Earth interpolation described in the brief.

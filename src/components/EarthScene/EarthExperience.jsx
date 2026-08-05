@@ -1,6 +1,7 @@
 import { Suspense, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
+import { useAppStore } from '@hooks/useAppStore';
 import EarthMesh from './EarthMesh';
 import CloudLayer from './CloudLayer';
 import CameraRig from './CameraRig';
@@ -67,15 +68,19 @@ function SunLight({ sunDirectionRef }) {
  */
 function SceneContents() {
   const sunDirectionRef = useRef([1, 0.15, 0]);
+  // Reduced-motion setting: the animated decorative particle layers
+  // (drifting nebula, space dust) are dropped entirely; the Earth,
+  // markers, and static starfield remain.
+  const reducedMotion = useAppStore((state) => state.reducedMotion);
 
   return (
     <>
       <ambientLight intensity={0.12} color="#0A1A2E" />
       <SunLight sunDirectionRef={sunDirectionRef} />
 
-      <Nebula />
+      {!reducedMotion && <Nebula />}
       <Starfield />
-      <SpaceDust />
+      {!reducedMotion && <SpaceDust />}
 
       <group>
         <EarthMesh sunDirectionRef={sunDirectionRef} />

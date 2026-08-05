@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAppStore } from '@hooks/useAppStore';
 import { getActiveAlerts } from '@services/environmentalDataService';
 import Panel from '@components/HolographicPanels/Panel';
 
@@ -16,6 +17,7 @@ const SEVERITY_CONFIG = {
 export default function AlertsPanel({ locationId }) {
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const reducedMotion = useAppStore((state) => state.reducedMotion);
 
   useEffect(() => {
     let cancelled = false;
@@ -39,7 +41,9 @@ export default function AlertsPanel({ locationId }) {
         </div>
         <div className="flex items-center gap-1.5">
           <span className="relative flex w-2 h-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-glow opacity-60" />
+            {!reducedMotion && (
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-glow opacity-60" />
+            )}
             <span className="relative inline-flex rounded-full w-2 h-2 bg-emerald-glow" />
           </span>
           <span className="font-mono text-[10px] uppercase tracking-widest text-emerald-glow">
