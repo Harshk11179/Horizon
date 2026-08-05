@@ -76,6 +76,9 @@ export default function MissionControlDashboard() {
   const temperatureUnit = useAppStore((state) => state.temperatureUnit);
   const [locationData, setLocationData] = useState(null);
   const [loading, setLoading] = useState(true);
+  // Non-null while the trend panel's time-lapse is replaying history:
+  // the gauge shows that month's score instead of the live one.
+  const [timelapseFrame, setTimelapseFrame] = useState(null);
 
   const activeLocationId = selectedLocationId ?? 'india';
 
@@ -129,12 +132,22 @@ export default function MissionControlDashboard() {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-        <div className="md:col-span-1 flex justify-center items-start pt-4">
+        <div className="md:col-span-1 flex flex-col items-center gap-3 pt-4">
           <HealthScoreGauge
-            score={locationData.environmentalScore}
-            monthlyChange={locationData.scoreChangeMonthly}
+            score={timelapseFrame ? timelapseFrame.score : locationData.environmentalScore}
+            monthlyChange={timelapseFrame ? 0 : locationData.scoreChangeMonthly}
             size="lg"
+            label={
+              timelapseFrame
+                ? `Score — ${timelapseFrame.month} (time-lapse)`
+                : 'Environmental Score'
+            }
           />
+          {timelapseFrame && (
+            <span className="font-mono text-[10px] uppercase tracking-widest text-emerald-glow animate-pulse">
+              ● Replaying history
+            </span>
+          )}
         </div>
 
         <div className="md:col-span-2 grid grid-cols-2 gap-4">
@@ -190,7 +203,7 @@ export default function MissionControlDashboard() {
         <div className="font-mono text-[10px] uppercase tracking-wider text-mist-dim mb-4">
           12-Month Environmental Trend
         </div>
-        <Timeline locationId={activeLocationId} />
+        <Timeline locationId={activeLocationId} onTimelapseFrame={setTimelapseFrame} />
       </Panel>
 
       <AlertsPanel locationId={activeLocationId} />

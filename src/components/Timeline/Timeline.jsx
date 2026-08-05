@@ -29,18 +29,30 @@ const SERIES = [
  * 3 series). All three series are 0–100 indices, so they legitimately
  * share ONE y-axis — no dual-axis. The moving particle rides the
  * primary (Health Score) path only, as a decorative accent.
+ *
+ * Time-lapse: the ▶ button replays the 12 months as an animated
+ * sweep — the crosshair/tooltip walk the chart month by month, and
+ * each frame is reported via onTimelapseFrame so the parent can drive
+ * other UI (Mission Control retargets the health gauge) in sync.
  */
-export default function Timeline({ locationId }) {
+const TIMELAPSE_FRAME_MS = 750;
+
+export default function Timeline({ locationId, onTimelapseFrame }) {
   const [trend, setTrend] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hiddenSeries, setHiddenSeries] = useState(() => new Set());
   const [showTable, setShowTable] = useState(false);
+  const [playIndex, setPlayIndex] = useState(null);
   const reducedMotion = useAppStore((state) => state.reducedMotion);
+
+  const playing = playIndex !== null;
 
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
+    setPlayIndex(null);
+    onTimelapseFrame?.(null);
     getTrendData(locationId).then((data) => {
       if (!cancelled) {
         setTrend(data);
@@ -50,7 +62,36 @@ export default function Timeline({ locationId }) {
     return () => {
       cancelled = true;
     };
+    // onTimelapseFrame intentionally omitted: refetch only on location
+    // change, not if the parent re-creates its callback.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locationId]);
+
+  // Advance the time-lapse one month per frame; stop after the last.
+  useEffect(() => {
+    if (!playing || trend.length === 0) return undefined;
+    onTimelapseFrame?.(trend[playIndex] ?? null);
+    if (playIndex >= trend.length - 1) {
+      const endTimer = setTimeout(() => {
+        setPlayIndex(null);
+        onTimelapseFrame?.(null);
+      }, TIMELAPSE_FRAME_MS);
+      return () => clearTimeout(endTimer);
+    }
+    const timer = setTimeout(() => setPlayIndex((i) => i + 1), TIMELAPSE_FRAME_MS);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playing, playIndex, trend]);
+
+  function toggleTimelapse() {
+    if (playing) {
+      setPlayIndex(null);
+      onTimelapseFrame?.(null);
+    } else {
+      setShowTable(false);
+      setPlayIndex(0);
+    }
+  }
 
   const visibleSeries = SERIES.filter((s) => !hiddenSeries.has(s.key));
 
@@ -118,6 +159,9 @@ export default function Timeline({ locationId }) {
 
   const scoreSeries = seriesPaths.find((s) => s.key === 'score');
 
+  // The time-lapse owns the crosshair while playing; hover otherwise.
+  const activeIndex = playIndex ?? hoveredIndex;
+
   return (
     <div className="relative w-full">
       {/* Legend (identity) + table toggle. Legend chips double as
@@ -145,16 +189,28 @@ export default function Timeline({ locationId }) {
             );
           })}
         </div>
-        <button
-          onClick={() => setShowTable((t) => !t)}
-          className={`text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-full border transition-colors duration-200 ${
-            showTable
-              ? 'border-neon-blue/40 text-neon-blue bg-neon-blue/5'
-              : 'border-white/10 text-mist-dim hover:text-mist'
-          }`}
-        >
-          {showTable ? 'Chart' : 'Table'}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={toggleTimelapse}
+            className={`text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-full border transition-colors duration-200 ${
+              playing
+                ? 'border-emerald-glow/40 text-emerald-glow bg-emerald-glow/5'
+                : 'border-white/10 text-mist-dim hover:text-mist'
+            }`}
+          >
+            {playing ? `◼ ${trend[playIndex]?.month ?? ''}` : '▶ Time-lapse'}
+          </button>
+          <button
+            onClick={() => setShowTable((t) => !t)}
+            className={`text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-full border transition-colors duration-200 ${
+              showTable
+                ? 'border-neon-blue/40 text-neon-blue bg-neon-blue/5'
+                : 'border-white/10 text-mist-dim hover:text-mist'
+            }`}
+          >
+            {showTable ? 'Chart' : 'Table'}
+          </button>
+        </div>
       </div>
 
       {showTable ? (
@@ -293,11 +349,11 @@ export default function Timeline({ locationId }) {
               </circle>
             )}
 
-            {/* Crosshair for the hovered month */}
-            {hoveredIndex !== null && (
+            {/* Crosshair for the active (hovered or time-lapse) month */}
+            {activeIndex !== null && (
               <line
-                x1={xPositions[hoveredIndex]}
-                x2={xPositions[hoveredIndex]}
+                x1={xPositions[activeIndex]}
+                x2={xPositions[activeIndex]}
                 y1={PADDING.top}
                 y2={CHART_HEIGHT - PADDING.bottom}
                 stroke="rgba(232, 244, 255, 0.18)"
@@ -306,13 +362,13 @@ export default function Timeline({ locationId }) {
               />
             )}
 
-            {/* Point markers on the hovered month */}
-            {hoveredIndex !== null &&
+            {/* Point markers on the active month */}
+            {activeIndex !== null &&
               seriesPaths.map((s) => (
                 <circle
                   key={`marker-${s.key}`}
-                  cx={s.points[hoveredIndex].x}
-                  cy={s.points[hoveredIndex].y}
+                  cx={s.points[activeIndex].x}
+                  cy={s.points[activeIndex].y}
                   r={4.5}
                   fill={s.color}
                   stroke="#05070D"
@@ -349,20 +405,20 @@ export default function Timeline({ locationId }) {
             })}
           </svg>
 
-          {hoveredIndex !== null && (
+          {activeIndex !== null && (
             <div
               className="absolute glass-panel-strong px-3 py-2 pointer-events-none z-10"
               style={{
-                left: `${(xPositions[hoveredIndex] / CHART_WIDTH) * 100}%`,
+                left: `${(xPositions[activeIndex] / CHART_WIDTH) * 100}%`,
                 top: 28,
                 transform:
-                  hoveredIndex > trend.length / 2
+                  activeIndex > trend.length / 2
                     ? 'translateX(calc(-100% - 12px))'
                     : 'translateX(12px)',
               }}
             >
               <div className="font-mono text-[10px] uppercase tracking-wider text-mist-dim mb-1.5">
-                {trend[hoveredIndex].month}
+                {trend[activeIndex].month}
               </div>
               {visibleSeries.map((s) => (
                 <div key={s.key} className="flex items-center gap-2 py-0.5">
@@ -374,7 +430,7 @@ export default function Timeline({ locationId }) {
                     {s.label}
                   </span>
                   <span className="font-mono text-xs text-mist tabular-nums ml-auto pl-3">
-                    {trend[hoveredIndex][s.key]}
+                    {trend[activeIndex][s.key]}
                   </span>
                 </div>
               ))}
