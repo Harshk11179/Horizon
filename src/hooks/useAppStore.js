@@ -27,6 +27,7 @@ export const DASHBOARD_VIEW = {
   CITIZEN: 'citizen',
   PROFESSIONAL: 'professional',
   COMPARE: 'compare',
+  RANKINGS: 'rankings',
 };
 
 export const useAppStore = create((set) => ({
