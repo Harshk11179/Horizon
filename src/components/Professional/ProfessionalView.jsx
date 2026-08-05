@@ -73,7 +73,7 @@ export default function ProfessionalView() {
             Early environmental overview before formal EIA
           </p>
         </div>
-        <LocationSelector activeLocationId={activeLocationId} onSelect={setSelectedLocationId} />
+        <LocationSelector activeLocationId={activeLocationId} onSelect={setSelectedLocationId} hotkey />
       </motion.div>
 
       {/* Project type selector — pill-style buttons rather than a

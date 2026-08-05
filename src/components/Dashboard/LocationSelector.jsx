@@ -1,14 +1,22 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAppStore } from '@hooks/useAppStore';
 import locationsData from '@data/locations.json';
 
 const LOCATIONS = Object.values(locationsData);
 
-export default function LocationSelector({ activeLocationId, onSelect }) {
+export default function LocationSelector({ activeLocationId, onSelect, hotkey = false }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const containerRef = useRef();
   const inputRef = useRef();
+  const searchOpenSignal = useAppStore((state) => state.searchOpenSignal);
+
+  // "/" hotkey support: only the selector marked as the view's primary
+  // one responds (Compare mounts two; both opening would be chaos).
+  useEffect(() => {
+    if (hotkey && searchOpenSignal > 0) setOpen(true);
+  }, [hotkey, searchOpenSignal]);
 
   const active = locationsData[activeLocationId];
 

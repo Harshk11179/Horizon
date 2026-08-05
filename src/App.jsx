@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useScrollProgress } from '@hooks/useScrollProgress';
 import { usePointerPosition } from '@hooks/usePointerPosition';
+import { useKeyboardShortcuts } from '@hooks/useKeyboardShortcuts';
 import EarthExperience from '@components/EarthScene/EarthExperience';
 
 /**
@@ -18,6 +19,7 @@ function CursorGlow() {
 export default function App() {
   const scrollContainerRef = useRef(null);
   useScrollProgress(scrollContainerRef);
+  useKeyboardShortcuts();
 
   return (
     <div ref={scrollContainerRef} className="relative min-h-screen bg-void-950">

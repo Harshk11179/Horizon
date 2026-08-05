@@ -65,6 +65,13 @@ export const useAppStore = create((set) => ({
   showToast: (toast) => set({ toast: { id: Date.now(), ...toast } }),
   clearToast: () => set({ toast: null }),
 
+  // --- "/" hotkey → open the active view's location search. A counter
+  //     rather than a boolean so repeated presses re-trigger the effect
+  //     even if a previous open was dismissed. ---
+  searchOpenSignal: 0,
+  requestSearchOpen: () =>
+    set((state) => ({ searchOpenSignal: state.searchOpenSignal + 1 })),
+
   // --- Global scroll progress (0-1), read by EarthScene to drive the
   //     camera-fly-toward-Earth interpolation described in the brief.
   //     Written by the scroll-tracking hook, read by the 3D scene —

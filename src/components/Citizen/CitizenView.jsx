@@ -82,7 +82,7 @@ export default function CitizenView() {
             {locationData.name}
           </p>
         </div>
-        <LocationSelector activeLocationId={activeLocationId} onSelect={setSelectedLocationId} />
+        <LocationSelector activeLocationId={activeLocationId} onSelect={setSelectedLocationId} hotkey />
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 items-center">

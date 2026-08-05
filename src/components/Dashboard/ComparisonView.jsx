@@ -167,7 +167,7 @@ export default function ComparisonView() {
                 className="w-2 h-2 rounded-full"
                 style={{ backgroundColor: SIDE_COLORS[side] }}
               />
-              <LocationSelector activeLocationId={id} onSelect={setId} />
+              <LocationSelector activeLocationId={id} onSelect={setId} hotkey={side === 'a'} />
             </div>
             <HealthScoreGauge
               key={`${side}-${id}`}

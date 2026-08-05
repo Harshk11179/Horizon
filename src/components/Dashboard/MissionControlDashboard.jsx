@@ -122,6 +122,7 @@ export default function MissionControlDashboard() {
         <LocationSelector
           activeLocationId={activeLocationId}
           onSelect={setSelectedLocationId}
+          hotkey
         />
       </motion.div>
 
