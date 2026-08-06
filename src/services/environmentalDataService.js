@@ -15,6 +15,7 @@
  *   GET  /api/locations/:id                     -> getLocation(id)
  *   GET  /api/locations/:id/trend?range=12m      -> getTrendData(id, range)
  *   GET  /api/locations/:id/alerts               -> getActiveAlerts(id)
+ *   GET  /api/locations/:id/cities               -> getCities(id)
  *   GET  /api/citizen/suggestions?location=:id  -> getSuggestions(id)
  *   GET  /api/professional/project-types        -> getProjectTypes()
  *   POST /api/professional/assess               -> getProfessionalAssessment(locationId, projectTypeId)
@@ -32,6 +33,7 @@ import trendsData from '@data/trends.json';
 import suggestionsData from '@data/suggestions.json';
 import projectTypesData from '@data/projectTypes.json';
 import alertsData from '@data/alerts.json';
+import citiesData from '@data/cities.json';
 
 // Simulated network latency. Kept small and consistent so loading-state
 // UI (skeletons, fade-ins) gets exercised during development without
@@ -168,6 +170,15 @@ export async function getActiveAlerts(locationId) {
     );
 
   return resolveAfterLatency(alerts);
+}
+
+/**
+ * Returns the major cities within a country, each with its own score.
+ * Empty array if the country has no city data or doesn't exist.
+ */
+export async function getCities(locationId) {
+  const cities = citiesData[locationId] ?? [];
+  return resolveAfterLatency(cities);
 }
 
 /**

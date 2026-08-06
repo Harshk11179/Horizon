@@ -7,6 +7,7 @@ import HealthScoreGauge from '@components/HealthScore/HealthScoreGauge';
 import Panel from '@components/HolographicPanels/Panel';
 import Timeline from '@components/Timeline/Timeline';
 import AlertsPanel from '@components/Alerts/AlertsPanel';
+import CityDrillDown from './CityDrillDown';
 import LocationSelector from './LocationSelector';
 
 const INDICATOR_META = [
@@ -207,6 +208,10 @@ export default function MissionControlDashboard() {
       </Panel>
 
       <AlertsPanel locationId={activeLocationId} />
+
+      <div className="mt-6">
+        <CityDrillDown locationId={activeLocationId} locationName={locationData.name} />
+      </div>
     </div>
   );
 }

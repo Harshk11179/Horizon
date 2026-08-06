@@ -1,0 +1,62 @@
+{
+  "india": [
+    { "id": "delhi", "name": "Delhi", "score": 78, "population": "32.9M" },
+    { "id": "mumbai", "name": "Mumbai", "score": 81, "population": "20.7M" },
+    { "id": "bangalore", "name": "Bangalore", "score": 84, "population": "12.3M" }
+  ],
+  "usa": [
+    { "id": "nyc", "name": "New York", "score": 74, "population": "8.3M" },
+    { "id": "la", "name": "Los Angeles", "score": 72, "population": "3.9M" },
+    { "id": "chicago", "name": "Chicago", "score": 79, "population": "2.7M" }
+  ],
+  "brazil": [
+    { "id": "saopaulo", "name": "São Paulo", "score": 66, "population": "12.3M" },
+    { "id": "rio", "name": "Rio de Janeiro", "score": 69, "population": "6.7M" },
+    { "id": "brasilia", "name": "Brasília", "score": 71, "population": "3.1M" }
+  ],
+  "germany": [
+    { "id": "berlin", "name": "Berlin", "score": 83, "population": "3.7M" },
+    { "id": "munich", "name": "Munich", "score": 86, "population": "1.5M" },
+    { "id": "hamburg", "name": "Hamburg", "score": 85, "population": "1.9M" }
+  ],
+  "australia": [
+    { "id": "sydney", "name": "Sydney", "score": 78, "population": "5.3M" },
+    { "id": "melbourne", "name": "Melbourne", "score": 81, "population": "5.1M" },
+    { "id": "brisbane", "name": "Brisbane", "score": 77, "population": "2.6M" }
+  ],
+  "japan": [
+    { "id": "tokyo", "name": "Tokyo", "score": 80, "population": "14.0M" },
+    { "id": "osaka", "name": "Osaka", "score": 82, "population": "2.8M" },
+    { "id": "yokohama", "name": "Yokohama", "score": 81, "population": "3.8M" }
+  ],
+  "kenya": [
+    { "id": "nairobi", "name": "Nairobi", "score": 70, "population": "4.9M" },
+    { "id": "mombasa", "name": "Mombasa", "score": 68, "population": "1.2M" },
+    { "id": "kisumu", "name": "Kisumu", "score": 73, "population": "0.6M" }
+  ],
+  "norway": [
+    { "id": "oslo", "name": "Oslo", "score": 92, "population": "1.1M" },
+    { "id": "bergen", "name": "Bergen", "score": 90, "population": "0.3M" },
+    { "id": "trondheim", "name": "Trondheim", "score": 91, "population": "0.2M" }
+  ],
+  "indonesia": [
+    { "id": "jakarta", "name": "Jakarta", "score": 61, "population": "10.6M" },
+    { "id": "surabaya", "name": "Surabaya", "score": 64, "population": "2.9M" },
+    { "id": "bandung", "name": "Bandung", "score": 67, "population": "2.5M" }
+  ],
+  "canada": [
+    { "id": "toronto", "name": "Toronto", "score": 86, "population": "6.2M" },
+    { "id": "vancouver", "name": "Vancouver", "score": 88, "population": "2.6M" },
+    { "id": "montreal", "name": "Montreal", "score": 87, "population": "4.3M" }
+  ],
+  "mexico": [
+    { "id": "mexicocity", "name": "Mexico City", "score": 68, "population": "9.2M" },
+    { "id": "guadalajara", "name": "Guadalajara", "score": 71, "population": "5.3M" },
+    { "id": "monterrey", "name": "Monterrey", "score": 72, "population": "5.3M" }
+  ],
+  "southafrica": [
+    { "id": "capetown", "name": "Cape Town", "score": 74, "population": "4.7M" },
+    { "id": "johannesburg", "name": "Johannesburg", "score": 72, "population": "5.7M" },
+    { "id": "durban", "name": "Durban", "score": 73, "population": "3.9M" }
+  ]
+}
