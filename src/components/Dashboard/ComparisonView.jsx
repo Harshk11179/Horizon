@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAppStore } from '@hooks/useAppStore';
 import { getLocation, getAllLocations } from '@services/environmentalDataService';
+import { generateComparisonPdf } from '@utils/generateComparisonPdf';
 import HealthScoreGauge from '@components/HealthScore/HealthScoreGauge';
 import Panel from '@components/HolographicPanels/Panel';
 import LocationSelector from '@components/Dashboard/LocationSelector';
@@ -195,6 +196,21 @@ export default function ComparisonView() {
       <p className="mt-8 text-center font-mono text-[10px] text-mist-dim/60 uppercase tracking-widest">
         All indicators indexed 0–100 · bars show raw value
       </p>
+
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="mt-6 flex justify-center"
+      >
+        <button
+          onClick={() => generateComparisonPdf({ locationA, locationB })}
+          className="glass-panel px-5 py-2.5 flex items-center gap-2.5 text-sm font-display tracking-wide text-mist border hover:border-emerald-glow/40 hover:shadow-glow-emerald transition-all duration-300"
+        >
+          <span className="text-emerald-glow" aria-hidden="true">↓</span>
+          Download Comparison PDF
+        </button>
+      </motion.div>
     </div>
   );
 }
