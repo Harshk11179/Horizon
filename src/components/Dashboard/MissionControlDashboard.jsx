@@ -8,6 +8,7 @@ import Panel from '@components/HolographicPanels/Panel';
 import Timeline from '@components/Timeline/Timeline';
 import AlertsPanel from '@components/Alerts/AlertsPanel';
 import CityDrillDown from './CityDrillDown';
+import IndicatorDetailModal from './IndicatorDetailModal';
 import LocationSelector from './LocationSelector';
 
 const INDICATOR_META = [
@@ -24,10 +25,10 @@ function toneForStatus(status) {
   return 'default';
 }
 
-function IndicatorPanel({ meta, data, delay }) {
+function IndicatorPanel({ meta, data, delay, onClick }) {
   const tone = toneForStatus(data?.status);
   return (
-    <Panel from={meta.from} delay={delay} tone={tone}>
+    <Panel from={meta.from} delay={delay} tone={tone} as={motion.button} className="text-left w-full cursor-pointer" onClick={onClick}>
       <div className="font-mono text-[10px] uppercase tracking-wider text-mist-dim mb-2">
         {meta.label}
       </div>
@@ -50,6 +51,9 @@ function IndicatorPanel({ meta, data, delay }) {
           {data.status}
         </div>
       )}
+      <div className="mt-3 font-mono text-[9px] uppercase tracking-widest text-mist-dim/60">
+        Click for details →
+      </div>
     </Panel>
   );
 }
@@ -80,6 +84,8 @@ export default function MissionControlDashboard() {
   // Non-null while the trend panel's time-lapse is replaying history:
   // the gauge shows that month's score instead of the live one.
   const [timelapseFrame, setTimelapseFrame] = useState(null);
+  // Which indicator panel was clicked (opens the detail modal).
+  const [detailModal, setDetailModal] = useState(null);
 
   const activeLocationId = selectedLocationId ?? 'india';
 
@@ -158,6 +164,7 @@ export default function MissionControlDashboard() {
               meta={meta}
               data={locationData.indicators[meta.key]}
               delay={i * 0.08}
+              onClick={() => setDetailModal({ key: meta.key, data: locationData.indicators[meta.key] })}
             />
           ))}
         </div>
@@ -168,6 +175,7 @@ export default function MissionControlDashboard() {
           meta={INDICATOR_META[4]}
           data={locationData.indicators.biodiversity}
           delay={0.32}
+          onClick={() => setDetailModal({ key: 'biodiversity', data: locationData.indicators.biodiversity })}
         />
         <Panel from="up" delay={0.4} className="md:col-span-2">
           <div className="font-mono text-[10px] uppercase tracking-wider text-mist-dim mb-1">
@@ -212,6 +220,15 @@ export default function MissionControlDashboard() {
       <div className="mt-6">
         <CityDrillDown locationId={activeLocationId} locationName={locationData.name} />
       </div>
+
+      {detailModal && (
+        <IndicatorDetailModal
+          indicatorKey={detailModal.key}
+          locationId={activeLocationId}
+          data={detailModal.data}
+          onClose={() => setDetailModal(null)}
+        />
+      )}
     </div>
   );
 }
