@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAppStore } from '@hooks/useAppStore';
 import { getLocation, getSuggestions } from '@services/environmentalDataService';
+import { getAdoptedActions, toggleAction, computeProgress } from '@utils/ecoActionsTracker';
 import HealthScoreGauge from '@components/HealthScore/HealthScoreGauge';
 import Panel from '@components/HolographicPanels/Panel';
 import LocationSelector from '@components/Dashboard/LocationSelector';
@@ -39,6 +40,7 @@ export default function CitizenView() {
   const [locationData, setLocationData] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [adoptedActions, setAdoptedActions] = useState(() => getAdoptedActions());
 
   const activeLocationId = selectedLocationId ?? 'india';
 
@@ -68,6 +70,11 @@ export default function CitizenView() {
   }
 
   const challenges = getTopChallenges(locationData.indicators);
+  const progress = computeProgress(adoptedActions.size);
+
+  function handleToggle(actionId) {
+    setAdoptedActions(toggleAction(actionId));
+  }
 
   return (
     <div className="min-h-screen px-6 pt-32 pb-20 max-w-5xl mx-auto">
@@ -133,15 +140,64 @@ export default function CitizenView() {
       </div>
 
       <div>
-        <h3 className="font-display text-lg text-mist mb-5 tracking-wide">
-          Personal Sustainability Suggestions
-        </h3>
+        <div className="flex items-baseline justify-between mb-5">
+          <h3 className="font-display text-lg text-mist tracking-wide">
+            Personal Sustainability Suggestions
+          </h3>
+          <div className="flex items-center gap-2">
+            <div className="text-right">
+              <div className="font-display text-sm text-emerald-glow">
+                Level {progress.level}
+              </div>
+              <div className="font-mono text-[10px] text-mist-dim">
+                {progress.points} pts
+              </div>
+            </div>
+            <div className="w-16 h-1.5 rounded-full bg-white/[0.05] overflow-hidden">
+              <motion.div
+                className="h-full rounded-full bg-emerald-glow"
+                initial={{ width: 0 }}
+                animate={{
+                  width: `${(progress.pointsIntoCurrentLevel / 50) * 100}%`,
+                }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              />
+            </div>
+          </div>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {suggestions.map((s, i) => (
-            <Panel key={s.id} from="up" delay={i * 0.08} tone="good">
-              <p className="text-sm font-body text-mist-dim leading-relaxed">{s.text}</p>
-            </Panel>
-          ))}
+          {suggestions.map((s, i) => {
+            const adopted = adoptedActions.has(s.id);
+            return (
+              <Panel key={s.id} from="up" delay={i * 0.08} tone={adopted ? 'good' : 'default'}>
+                <button
+                  onClick={() => handleToggle(s.id)}
+                  className="w-full text-left group"
+                  title={adopted ? 'Mark as not adopted' : 'Mark as adopted'}
+                >
+                  <div className="flex items-start gap-2 mb-2">
+                    <span
+                      className={`inline-flex items-center justify-center w-5 h-5 rounded border transition-colors duration-200 ${
+                        adopted
+                          ? 'bg-emerald-glow/15 border-emerald-glow text-emerald-glow'
+                          : 'border-white/20 text-transparent group-hover:border-emerald-glow/40'
+                      }`}
+                    >
+                      ✓
+                    </span>
+                    <p className="text-sm font-body text-mist-dim leading-relaxed flex-1">
+                      {s.text}
+                    </p>
+                  </div>
+                  {adopted && (
+                    <div className="font-mono text-[9px] uppercase tracking-widest text-emerald-glow/70">
+                      +{10} impact points
+                    </div>
+                  )}
+                </button>
+              </Panel>
+            );
+          })}
         </div>
       </div>
     </div>
