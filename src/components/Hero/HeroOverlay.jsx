@@ -177,7 +177,7 @@ export default function HeroOverlay() {
               variants={riseVariants}
               className="font-display font-medium text-6xl md:text-8xl text-mist text-glow-blue tracking-tight"
             >
-              EcoSentinel
+              Horizon
             </motion.h1>
 
             <motion.p

@@ -12,7 +12,7 @@ const PADDING = { top: 20, right: 96, bottom: 30, left: 36 };
  * chosen (and machine-validated) for colorblind-safe separation and an
  * OKLCH lightness band suited to line marks on the void-950 surface.
  * Health Score uses the brand's own dimmed cyan token so the primary
- * series still reads as "EcoSentinel blue".
+ * series still reads as "Horizon blue".
  */
 const SERIES = [
   { key: 'score', label: 'Health Score', color: '#00A3C4' },

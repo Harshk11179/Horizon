@@ -1,4 +1,4 @@
-# EcoSentinel — Frontend
+# Horizon — Frontend
 
 An AI-powered environmental intelligence platform presented as an
 immersive, cinematic 3D experience: a real-time rotating Earth in deep
@@ -16,7 +16,7 @@ below.
 
 ## Project Overview
 
-EcoSentinel bridges two audiences on one platform:
+Horizon bridges two audiences on one platform:
 
 - **Citizens** get an easy-to-read environmental health score for their
   location, monthly trend context, and personalized sustainability
@@ -106,7 +106,7 @@ pipeline — it's a one-time asset-generation tool.
 ## Folder Structure
 
 ```
-ecosentinel/
+horizon/
 ├── README.md
 ├── FINAL_AUDIT.md
 ├── ENVIRONMENT.md

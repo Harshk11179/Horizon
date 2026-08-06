@@ -30,7 +30,7 @@ export const DASHBOARD_VIEW = {
   RANKINGS: 'rankings',
 };
 
-const SETTINGS_KEY = 'ecosentinel-settings';
+const SETTINGS_KEY = 'horizon-settings';
 
 function loadStoredSettings() {
   try {

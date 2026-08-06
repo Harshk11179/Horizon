@@ -68,7 +68,7 @@ export default function Navbar() {
           onClick={() => handleNavClick({ phase: SCENE_PHASE.HERO })}
           className="font-display text-lg text-mist tracking-wide"
         >
-          EcoSentinel
+          Horizon
         </button>
 
         <div className="flex items-center gap-3 md:gap-8">

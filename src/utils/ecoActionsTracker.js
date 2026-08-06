@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'ecosentinel-adopted-actions';
+const STORAGE_KEY = 'horizon-adopted-actions';
 
 /**
  * Each adopted action is worth 10 impact points. Levels unlock at

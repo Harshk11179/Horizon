@@ -1,4 +1,4 @@
-# EcoSentinel Frontend — Final Audit
+# Horizon Frontend — Final Audit
 
 This audit checks every requirement from the original project brief
 against the delivered codebase. Each line was verified by direct
