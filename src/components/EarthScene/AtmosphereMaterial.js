@@ -2,33 +2,14 @@ import { shaderMaterial } from '@react-three/drei';
 import { extend } from '@react-three/fiber';
 import { Color, Vector3, AdditiveBlending, BackSide } from 'three';
 
-/**
- * AtmosphereMaterial
- *
- * Classic Fresnel rim-glow technique: render a sphere slightly larger
- * than the Earth mesh, with BackSide culling (so we see the INSIDE of
- * this larger sphere from outside the Earth) and additive blending.
- * The Fresnel term makes opacity near-zero when looking straight at the
- * surface (view direction parallel to normal) and near-1 at grazing
- * angles (view direction perpendicular to normal) — which is exactly
- * how atmospheric scattering behaves: you see more atmosphere glow
- * looking through it at a shallow angle (toward the limb/edge of the
- * planet) than looking straight down through it.
- *
- * uSunDirection is reused here (same value as EarthMaterial's uniform)
- * so the glow subtly warms/dims on the day side vs night side rather
- * than being a uniform ring regardless of lighting — the aurora effect
- * is a SEPARATE mesh (see AuroraEffect.jsx), this shader only handles
- * the general atmospheric rim glow.
- */
 const AtmosphereMaterial = shaderMaterial(
   {
     uSunDirection: new Vector3(1, 0, 0),
-    uDayColor: new Color('#00D9FF'),
-    uNightColor: new Color('#003A4D'),
+    uDayColor: new Color('#00D4FF'),
+    uNightColor: new Color('#001A3D'),
+    uGlowColor: new Color('#0044AA'),
     uIntensity: 1.0,
   },
-  // Vertex shader
   /* glsl */ `
     varying vec3 vNormal;
     varying vec3 vViewPosition;
@@ -40,11 +21,11 @@ const AtmosphereMaterial = shaderMaterial(
       gl_Position = projectionMatrix * mvPosition;
     }
   `,
-  // Fragment shader
   /* glsl */ `
     uniform vec3 uSunDirection;
     uniform vec3 uDayColor;
     uniform vec3 uNightColor;
+    uniform vec3 uGlowColor;
     uniform float uIntensity;
 
     varying vec3 vNormal;
@@ -52,30 +33,32 @@ const AtmosphereMaterial = shaderMaterial(
 
     void main() {
       vec3 viewDir = normalize(vViewPosition);
+      vec3 norm    = normalize(vNormal);
 
-      // Fresnel term: 0 at normal incidence, 1 at grazing angle.
-      // Power of 2.5 (rather than a lower power like 1.0) gives a
-      // tighter, more concentrated rim rather than a glow that fades
-      // too gradually across the whole visible hemisphere.
-      float fresnel = pow(1.0 - max(dot(normalize(vNormal), viewDir), 0.0), 2.5);
+      // Tighter Fresnel for a sharper, more cinematic limb glow
+      float fresnel = pow(1.0 - max(dot(norm, viewDir), 0.0), 3.2);
 
-      // Blend atmosphere tint based on how much this point on the
-      // sphere faces the sun — same day/night logic as the surface
-      // shader, but softer since atmospheric scattering doesn't have a
-      // hard terminator the way direct surface lighting does.
-      float sunFacing = dot(normalize(vNormal), normalize(uSunDirection));
-      float dayNightMix = smoothstep(-0.4, 0.3, sunFacing);
-      vec3 atmosphereColor = mix(uNightColor, uDayColor, dayNightMix);
+      // Day/night atmospheric tint
+      float sunFacing  = dot(norm, normalize(uSunDirection));
+      float dayMix     = smoothstep(-0.5, 0.25, sunFacing);
+      vec3 atmColor    = mix(uNightColor, uDayColor, dayMix);
 
-      gl_FragColor = vec4(atmosphereColor, fresnel * uIntensity);
+      // Secondary deep-blue inner glow — gives sense of thick atmosphere
+      float innerGlow  = pow(1.0 - max(dot(norm, viewDir), 0.0), 1.6) * 0.3;
+      atmColor         = mix(atmColor, uGlowColor, innerGlow * (1.0 - dayMix));
+
+      // Very subtle rayleigh-style scatter: blue fringe on the sun side
+      float scatter    = max(sunFacing, 0.0) * 0.12;
+      atmColor         += vec3(0.0, 0.12, 0.3) * scatter * fresnel;
+
+      float alpha = fresnel * uIntensity;
+      gl_FragColor = vec4(atmColor, alpha);
     }
   `
 );
 
 extend({ AtmosphereMaterial });
 
-// Exported alongside the material so EarthMesh can apply the correct
-// side/blending mode without needing to remember these constants itself.
 export const ATMOSPHERE_MATERIAL_PROPS = {
   side: BackSide,
   blending: AdditiveBlending,
