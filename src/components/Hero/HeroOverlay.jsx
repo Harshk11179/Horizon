@@ -1,25 +1,9 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore, SCENE_PHASE } from '@hooks/useAppStore';
 import Navbar from '@components/Navbar/Navbar';
 import ScrollParallaxLayer from './ScrollParallaxLayer';
 
-/**
- * Intro sequence timing. Each stage's delay is tuned so the overall
- * effect reads as "fade in from black... [several seconds]... buttons
- * animate upward" as one continuous unfolding sequence rather than a
- * single fade — see the brief's explicit staged list (stars, Earth,
- * atmosphere, clouds, sunlight, title, subtitle, buttons).
- *
- * The 3D layer (stars/Earth/atmosphere/clouds) is already continuously
- * rendering underneath — it doesn't "wait" for this sequence. What
- * fades in stage-by-stage is this DOM layer's own opacity/blur, timed
- * so the DARK OVERLAY covering the 3D scene lifts gradually, revealing
- * stars first, then more of the scene, rather than the 3D content
- * itself being staged (which would require coordinating opacity across
- * many separate WebGL materials — needlessly complex compared to
- * revealing what's already rendering via a single DOM overlay fade).
- */
 const INTRO_STAGES = {
   BLACK: 0,
   STARS_REVEALED: 400,
@@ -38,9 +22,6 @@ function IntroVeil() {
       .filter(([key]) => key !== 'BLACK')
       .map(([key, delay]) => setTimeout(() => setStage(key), delay));
 
-    // Hand the scene over to the interactive HERO phase once the veil
-    // has fully lifted. Guarded so a deep link (or fast user) that has
-    // already moved the phase past INTRO isn't yanked back to HERO.
     const phaseTimer = setTimeout(() => {
       const { scenePhase, setScenePhase } = useAppStore.getState();
       if (scenePhase === SCENE_PHASE.INTRO) setScenePhase(SCENE_PHASE.HERO);
@@ -56,33 +37,17 @@ function IntroVeil() {
 
   return (
     <motion.div
-      className="fixed inset-0 z-40 bg-void-950 pointer-events-none"
+      className="fixed inset-0 z-40 pointer-events-none"
       initial={{ opacity: 1 }}
       animate={{ opacity: veilOpacity }}
       transition={{ duration: stage === 'STARS_REVEALED' ? 1.2 : 1.8, ease: 'easeOut' }}
+      style={{ background: 'radial-gradient(ellipse at 50% 40%, #02040A 0%, #000000 100%)' }}
     />
   );
 }
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15 } },
-};
-
-const riseVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } },
-};
-
 /**
- * LiquidButton
- *
- * "Glowing liquid hover animations" per the brief — implemented as a
- * radial gradient that expands from the cursor's position within the
- * button on hover (tracked via onMouseMove + CSS custom properties,
- * same technique as the global cursor-glow, for the same
- * no-React-state-on-mousemove performance reason) rather than a
- * uniform glow, which reads as flat/generic rather than "liquid."
+ * LiquidButton — magnetic hover + radial ripple from cursor position.
  */
 function LiquidButton({ children, variant = 'primary', onClick }) {
   function handleMouseMove(e) {
@@ -91,25 +56,66 @@ function LiquidButton({ children, variant = 'primary', onClick }) {
     e.currentTarget.style.setProperty('--my', `${e.clientY - rect.top}px`);
   }
 
-  const base =
-    'relative overflow-hidden px-8 py-3.5 rounded-full font-display text-sm tracking-wide transition-transform duration-300 hover:scale-[1.03] active:scale-[0.98]';
-
-  const variantClass =
-    variant === 'primary'
-      ? 'bg-neon-blue/10 border border-neon-blue/40 text-mist shadow-glow-blue'
-      : 'bg-white/[0.04] border border-white/15 text-mist-dim hover:text-mist';
+  if (variant === 'primary') {
+    return (
+      <button
+        onMouseMove={handleMouseMove}
+        onClick={onClick}
+        className="relative overflow-hidden px-8 py-3.5 rounded-full font-display text-sm tracking-wide text-mist group"
+        style={{
+          background: 'linear-gradient(135deg,rgba(0,212,255,0.14),rgba(79,142,255,0.10))',
+          border: '1px solid rgba(0,212,255,0.38)',
+          boxShadow: '0 0 24px rgba(0,212,255,0.25), inset 0 1px 0 rgba(255,255,255,0.08)',
+          transition: 'all 0.35s cubic-bezier(0.16,1,0.3,1)',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.boxShadow = '0 0 40px rgba(0,212,255,0.45), 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.12)';
+          e.currentTarget.style.transform = 'translateY(-2px) scale(1.03)';
+          e.currentTarget.style.borderColor = 'rgba(0,212,255,0.65)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.boxShadow = '0 0 24px rgba(0,212,255,0.25), inset 0 1px 0 rgba(255,255,255,0.08)';
+          e.currentTarget.style.transform = '';
+          e.currentTarget.style.borderColor = 'rgba(0,212,255,0.38)';
+        }}
+      >
+        <span
+          className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{
+            background: 'radial-gradient(160px circle at var(--mx,50%) var(--my,50%),rgba(0,212,255,0.3),transparent 70%)',
+          }}
+        />
+        <span className="relative z-10">{children}</span>
+      </button>
+    );
+  }
 
   return (
     <button
       onMouseMove={handleMouseMove}
       onClick={onClick}
-      className={`${base} ${variantClass} group`}
+      className="relative overflow-hidden px-8 py-3.5 rounded-full font-display text-sm tracking-wide text-mist-dim group"
+      style={{
+        border: '1px solid rgba(255,255,255,0.12)',
+        transition: 'all 0.35s cubic-bezier(0.16,1,0.3,1)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.color = '#EDF6FF';
+        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.22)';
+        e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
+        e.currentTarget.style.transform = 'translateY(-1px)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.color = '';
+        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
+        e.currentTarget.style.background = '';
+        e.currentTarget.style.transform = '';
+      }}
     >
       <span
         className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
-          background:
-            'radial-gradient(140px circle at var(--mx, 50%) var(--my, 50%), rgba(0,217,255,0.35), transparent 70%)',
+          background: 'radial-gradient(140px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,0.08),transparent 70%)',
         }}
       />
       <span className="relative z-10">{children}</span>
@@ -117,36 +123,15 @@ function LiquidButton({ children, variant = 'primary', onClick }) {
   );
 }
 
-/**
- * HeroOverlay
- *
- * Renders the intro veil, navbar, hero text/buttons, AND the tall
- * scroll-spacer that gives the document actual scrollable height.
- * Without a real-height element somewhere in the DOM, window.scrollY
- * would always be 0 and useScrollProgress would have nothing to
- * measure — the Canvas layer itself is fixed/full-viewport (see
- * EarthExperience.jsx) and contributes zero scrollHeight on its own.
- *
- * 300vh chosen empirically: long enough that the scroll-driven camera
- * zoom (SCROLL_MIN_DISTANCE -> SCROLL_MAX_DISTANCE in CameraRig.jsx)
- * has room to feel gradual rather than completing in a single mouse-
- * wheel tick, short enough that reaching the dashboard doesn't require
- * excessive scrolling.
- */
 export default function HeroOverlay() {
-  const scenePhase = useAppStore((state) => state.scenePhase);
-  const setScenePhase = useAppStore((state) => state.setScenePhase);
+  const scenePhase    = useAppStore((s) => s.scenePhase);
+  const setScenePhase = useAppStore((s) => s.setScenePhase);
 
   const heroVisible = scenePhase === SCENE_PHASE.HERO || scenePhase === SCENE_PHASE.SCROLLING;
 
   function handleExploreEarth() {
-    // "Explore Earth" scrolls the user into the scroll-driven zoom
-    // sequence rather than jumping straight to a location — it's the
-    // brief's own distinction between the two hero buttons ("Explore
-    // Earth" vs "Enter Dashboard").
     window.scrollTo({ top: window.innerHeight * 1.2, behavior: 'smooth' });
   }
-
   function handleEnterDashboard() {
     setScenePhase(SCENE_PHASE.DASHBOARD);
   }
@@ -156,62 +141,130 @@ export default function HeroOverlay() {
       <IntroVeil />
       <Navbar />
 
-      {/* Wrapping div gives ScrollParallaxLayer's `absolute inset-0`
-          something sized to the full scroll sequence to anchor
-          against, rather than the layer collapsing to 0 height (which
-          `absolute` positioning would do with no positioned ancestor
-          of nonzero height) — the hero section below and the 300vh
-          spacer at the bottom of this component are its siblings, all
-          contained here. */}
       <div className="relative">
         <ScrollParallaxLayer />
 
         <section className="relative h-screen w-full flex flex-col items-center justify-center px-6">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={heroVisible ? 'visible' : 'hidden'}
-            className="flex flex-col items-center text-center max-w-3xl"
-          >
-            <motion.h1
-              variants={riseVariants}
-              className="font-display font-medium text-6xl md:text-8xl text-mist text-glow-blue tracking-tight"
-            >
-              Horizon
-            </motion.h1>
+          <AnimatePresence>
+            {heroVisible && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="flex flex-col items-center text-center max-w-4xl"
+              >
+                {/* Eyebrow label */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 3.6, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex items-center gap-2 mb-6"
+                >
+                  <span className="w-6 h-px bg-neon-blue/60" />
+                  <span
+                    className="font-mono text-[11px] uppercase tracking-[0.25em]"
+                    style={{ color: 'rgba(0,212,255,0.8)' }}
+                  >
+                    AI Environmental Intelligence
+                  </span>
+                  <span className="w-6 h-px bg-neon-blue/60" />
+                </motion.div>
 
-            <motion.p
-              variants={riseVariants}
-              className="mt-5 font-body text-lg md:text-xl text-mist-dim tracking-wide"
-            >
-              Real-Time Planetary Health Intelligence
-            </motion.p>
+                {/* Main heading */}
+                <motion.h1
+                  initial={{ opacity: 0, y: 28 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 3.75, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                  className="font-display font-semibold text-7xl md:text-[100px] leading-[0.95] tracking-tight mb-6"
+                >
+                  <span
+                    style={{
+                      background: 'linear-gradient(135deg,#EDF6FF 30%,rgba(237,246,255,0.7) 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                      textShadow: 'none',
+                      filter: 'drop-shadow(0 0 40px rgba(0,212,255,0.2))',
+                    }}
+                  >
+                    Horizon
+                  </span>
+                </motion.h1>
 
-            <motion.div variants={riseVariants} className="mt-10 flex items-center gap-4">
-              <LiquidButton variant="primary" onClick={handleExploreEarth}>
-                Explore Earth
-              </LiquidButton>
-              <LiquidButton variant="secondary" onClick={handleEnterDashboard}>
-                Enter Dashboard
-              </LiquidButton>
-            </motion.div>
-          </motion.div>
+                {/* Subtitle */}
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 3.9, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="font-body text-lg md:text-xl text-mist-dim tracking-wide leading-relaxed max-w-2xl mb-10"
+                >
+                  Real-time planetary intelligence. Monitor environmental health,
+                  predict risks, and guide sustainable decisions — at any scale.
+                </motion.p>
 
+                {/* CTA buttons */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 4.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex items-center gap-4"
+                >
+                  <LiquidButton variant="primary" onClick={handleExploreEarth}>
+                    Explore Earth
+                  </LiquidButton>
+                  <LiquidButton variant="secondary" onClick={handleEnterDashboard}>
+                    Enter Dashboard
+                  </LiquidButton>
+                </motion.div>
+
+                {/* Stats row */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 4.3, duration: 1 }}
+                  className="flex items-center gap-8 mt-14"
+                >
+                  {[
+                    { value: '12', label: 'Countries' },
+                    { value: '36', label: 'Cities' },
+                    { value: '6', label: 'Indicators' },
+                  ].map(({ value, label }) => (
+                    <div key={label} className="text-center">
+                      <div className="font-mono text-2xl font-medium tabular-nums"
+                        style={{ color: '#EDF6FF' }}>
+                        {value}
+                      </div>
+                      <div className="font-mono text-[10px] uppercase tracking-widest text-mist-subtle mt-0.5">
+                        {label}
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Scroll indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: heroVisible ? 1 : 0 }}
-            transition={{ delay: 3.8, duration: 1 }}
-            className="absolute bottom-10 flex flex-col items-center gap-2 text-mist-dim"
+            transition={{ delay: 4.5, duration: 1 }}
+            className="absolute bottom-10 flex flex-col items-center gap-2"
           >
-            <span className="font-mono text-[10px] tracking-[0.2em] uppercase">Scroll</span>
-            <div className="w-px h-8 bg-gradient-to-b from-mist-dim to-transparent" />
+            <span className="font-mono text-[9px] tracking-[0.25em] uppercase text-mist-subtle">
+              Scroll
+            </span>
+            <div className="relative w-px h-10 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-neon-blue/60 to-transparent" />
+              <motion.div
+                className="absolute top-0 left-0 w-full h-1/2 bg-neon-blue"
+                animate={{ y: ['0%', '200%'] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            </div>
           </motion.div>
         </section>
 
-        {/* Scroll-driven zoom sequence spacer — see component doc comment
-            above. Sibling of the hero <section>, both children of the
-            relative wrapper that gives ScrollParallaxLayer's absolute
-            positioning something to size against. */}
         <div className="h-[300vh] w-full pointer-events-none" aria-hidden="true" />
       </div>
     </>

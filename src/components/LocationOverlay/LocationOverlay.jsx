@@ -5,59 +5,67 @@ import { getLocation } from '@services/environmentalDataService';
 import { formatTemperature } from '@utils/formatTemperature';
 
 const INDICATOR_LABELS = {
-  airQuality: 'Air Quality',
+  airQuality:  'Air Quality',
   waterStress: 'Water Stress',
-  greenCover: 'Green Cover',
+  greenCover:  'Green Cover',
   climateRisk: 'Climate Risk',
-  biodiversity: 'Biodiversity',
+  biodiversity:'Biodiversity',
   temperature: 'Temperature',
-  humidity: 'Humidity',
+  humidity:    'Humidity',
 };
 
-const STATUS_COLOR = {
-  good: 'text-emerald-glow border-emerald-glow/30',
-  low: 'text-emerald-glow border-emerald-glow/30',
-  moderate: 'text-neon-blue border-neon-blue/30',
-  high: 'text-risk border-risk/30',
+const STATUS_STYLES = {
+  good:     { color: '#00F5A0', bg: 'rgba(0,245,160,0.08)',  border: 'rgba(0,245,160,0.25)' },
+  low:      { color: '#00F5A0', bg: 'rgba(0,245,160,0.08)',  border: 'rgba(0,245,160,0.25)' },
+  moderate: { color: '#00D4FF', bg: 'rgba(0,212,255,0.08)',  border: 'rgba(0,212,255,0.25)' },
+  high:     { color: '#FF3B5C', bg: 'rgba(255,59,92,0.08)',  border: 'rgba(255,59,92,0.25)' },
 };
 
-/**
- * IndicatorCard
- *
- * Each rises independently with a staggered delay (see the parent's
- * transition stagger) — "each indicator should animate upward from the
- * surface of Earth" per the brief. index drives both the stagger delay
- * and a slight horizontal fan-out, so seven cards rising in a row don't
- * look like a single stacked column.
- */
 function IndicatorCard({ indicatorKey, data, index, total }) {
-  const temperatureUnit = useAppStore((state) => state.temperatureUnit);
-  const label = INDICATOR_LABELS[indicatorKey] ?? indicatorKey;
-  const statusClass = data.status ? STATUS_COLOR[data.status] ?? STATUS_COLOR.moderate : 'text-mist border-white/20';
+  const temperatureUnit = useAppStore((s) => s.temperatureUnit);
+  const label   = INDICATOR_LABELS[indicatorKey] ?? indicatorKey;
+  const styles  = data.status ? STATUS_STYLES[data.status] ?? STATUS_STYLES.moderate : { color: '#9AB3CC', bg: 'rgba(255,255,255,0.04)', border: 'rgba(255,255,255,0.12)' };
+  const display = indicatorKey === 'temperature'
+    ? formatTemperature(data.value, temperatureUnit)
+    : { value: data.value, unit: data.unit };
 
-  const display =
-    indicatorKey === 'temperature'
-      ? formatTemperature(data.value, temperatureUnit)
-      : { value: data.value, unit: data.unit };
-
-  // Fan-out offset: cards nearer the center of the row sit lower/closer,
-  // outer cards sit slightly higher — evokes them rising from a curved
-  // surface (the globe) rather than a flat line.
   const centerOffset = index - (total - 1) / 2;
-  const fanY = Math.abs(centerOffset) * 6;
+  const fanY = Math.abs(centerOffset) * 5;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 60, scale: 0.85 }}
+      initial={{ opacity: 0, y: 70, scale: 0.82 }}
       animate={{ opacity: 1, y: fanY, scale: 1 }}
-      exit={{ opacity: 0, y: 40, scale: 0.9, transition: { duration: 0.3 } }}
-      transition={{ delay: index * 0.09, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className={`glass-panel-strong px-4 py-3 min-w-[108px] border ${statusClass}`}
+      exit={{ opacity: 0, y: 50, scale: 0.88, transition: { duration: 0.3 } }}
+      transition={{ delay: index * 0.08, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+      className="relative overflow-hidden"
+      style={{
+        minWidth: 112,
+        padding: '12px 16px',
+        borderRadius: 16,
+        background: `linear-gradient(135deg,${styles.bg},rgba(7,12,24,0.85))`,
+        border: `1px solid ${styles.border}`,
+        backdropFilter: 'blur(20px)',
+        boxShadow: `0 8px 24px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.06)`,
+      }}
     >
-      <div className="font-mono text-[10px] uppercase tracking-wider text-mist-dim mb-1">
+      {/* Shimmer highlight */}
+      <div
+        className="absolute inset-0 rounded-2xl pointer-events-none"
+        style={{
+          background: 'linear-gradient(135deg,rgba(255,255,255,0.05) 0%,transparent 60%)',
+        }}
+      />
+      <div
+        className="font-mono text-[9px] uppercase tracking-[0.15em] mb-1.5"
+        style={{ color: 'rgba(154,179,204,0.7)' }}
+      >
         {label}
       </div>
-      <div className="font-mono text-xl font-medium tabular-nums">
+      <div
+        className="font-mono text-xl font-medium tabular-nums"
+        style={{ color: styles.color }}
+      >
         {display.value}
         <span className="text-xs ml-0.5 opacity-60">{display.unit}</span>
       </div>
@@ -65,28 +73,12 @@ function IndicatorCard({ indicatorKey, data, index, total }) {
   );
 }
 
-/**
- * LocationOverlay
- *
- * Only mounts its visible content once scenePhase is LOCATION_FOCUS —
- * gated the same way SelectionRings is, so the DOM panel rise and the
- * 3D ring ceremony play together rather than one preceding the other.
- *
- * Data is fetched via getLocation() (the async service layer), not by
- * importing locations.json directly — this component is genuinely
- * data-driven UI (as opposed to CameraRig's synchronous geometry
- * lookup), so it goes through the seam that will hit the real FastAPI
- * backend later. The brief loading latency this introduces is exactly
- * why the panels animate in with a stagger rather than appearing all
- * at once the instant data resolves — the rise animation comfortably
- * covers the ~220ms simulated fetch.
- */
 export default function LocationOverlay() {
-  const scenePhase = useAppStore((state) => state.scenePhase);
-  const selectedLocationId = useAppStore((state) => state.selectedLocationId);
-  const setScenePhase = useAppStore((state) => state.setScenePhase);
-  const setActiveDashboardView = useAppStore((state) => state.setActiveDashboardView);
-  const clearSelectedLocation = useAppStore((state) => state.clearSelectedLocation);
+  const scenePhase          = useAppStore((s) => s.scenePhase);
+  const selectedLocationId  = useAppStore((s) => s.selectedLocationId);
+  const setScenePhase       = useAppStore((s) => s.setScenePhase);
+  const setActiveDashboard  = useAppStore((s) => s.setActiveDashboardView);
+  const clearSelected       = useAppStore((s) => s.clearSelectedLocation);
 
   const [locationData, setLocationData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -96,26 +88,18 @@ export default function LocationOverlay() {
       setLocationData(null);
       return;
     }
-
     let cancelled = false;
     setLoading(true);
-
     getLocation(selectedLocationId).then((data) => {
-      if (!cancelled) {
-        setLocationData(data);
-        setLoading(false);
-      }
+      if (!cancelled) { setLocationData(data); setLoading(false); }
     });
-
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [scenePhase, selectedLocationId]);
 
   const isVisible = scenePhase === SCENE_PHASE.LOCATION_FOCUS && locationData && !loading;
 
   function handleEnterDashboard() {
-    setActiveDashboardView(DASHBOARD_VIEW.MISSION_CONTROL);
+    setActiveDashboard(DASHBOARD_VIEW.MISSION_CONTROL);
     setScenePhase(SCENE_PHASE.DASHBOARD);
   }
 
@@ -123,47 +107,67 @@ export default function LocationOverlay() {
     <AnimatePresence>
       {isVisible && (
         <div className="fixed inset-x-0 bottom-0 z-30 flex flex-col items-center pb-10 px-6 pointer-events-none">
+
+          {/* Location name chip */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="glass-panel px-5 py-2 mb-6 pointer-events-auto"
+            initial={{ opacity: 0, y: 12, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-6 pointer-events-auto flex items-center gap-3"
+            style={{
+              padding: '8px 20px',
+              borderRadius: 999,
+              background: 'linear-gradient(135deg,rgba(11,17,32,0.88),rgba(7,12,24,0.95))',
+              backdropFilter: 'blur(24px)',
+              border: '1px solid rgba(0,212,255,0.22)',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.4),0 0 20px rgba(0,212,255,0.1)',
+            }}
           >
-            <span className="font-display text-sm text-mist tracking-wide">
-              {locationData.name}
-            </span>
-            <span className="font-mono text-xs text-mist-dim ml-2">
-              {locationData.capital}
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-glow animate-pulse-subtle" style={{ boxShadow: '0 0 6px rgba(0,245,160,0.8)' }} />
+            <span className="font-display text-sm text-mist tracking-wide">{locationData.name}</span>
+            <span className="font-mono text-xs text-mist-subtle">•</span>
+            <span className="font-mono text-xs text-mist-dim">{locationData.capital}</span>
+            <span
+              className="font-mono text-xs font-medium tabular-nums"
+              style={{ color: locationData.environmentalScore >= 75 ? '#00F5A0' : locationData.environmentalScore >= 50 ? '#00D4FF' : '#FF3B5C' }}
+            >
+              {locationData.environmentalScore}
             </span>
           </motion.div>
 
-          <div className="flex flex-wrap justify-center gap-3 mb-8 pointer-events-auto">
-            {Object.entries(locationData.indicators).map(([key, data], index, arr) => (
-              <IndicatorCard
-                key={key}
-                indicatorKey={key}
-                data={data}
-                index={index}
-                total={arr.length}
-              />
+          {/* Indicator cards */}
+          <div className="flex flex-wrap justify-center gap-2.5 mb-8 pointer-events-auto">
+            {Object.entries(locationData.indicators).map(([key, data], i, arr) => (
+              <IndicatorCard key={key} indicatorKey={key} data={data} index={i} total={arr.length} />
             ))}
           </div>
 
+          {/* CTA buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
+            transition={{ delay: 0.85, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center gap-3 pointer-events-auto"
           >
             <button
               onClick={handleEnterDashboard}
-              className="px-6 py-2.5 rounded-full bg-neon-blue/10 border border-neon-blue/40 text-mist text-sm font-display tracking-wide shadow-glow-blue hover:scale-[1.03] transition-transform duration-300"
+              className="relative overflow-hidden px-7 py-2.5 rounded-full font-display text-sm tracking-wide text-mist group"
+              style={{
+                background: 'linear-gradient(135deg,rgba(0,212,255,0.14),rgba(79,142,255,0.10))',
+                border: '1px solid rgba(0,212,255,0.4)',
+                boxShadow: '0 0 24px rgba(0,212,255,0.25)',
+                transition: 'all 0.3s cubic-bezier(0.16,1,0.3,1)',
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.boxShadow = '0 0 40px rgba(0,212,255,0.45)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.boxShadow = '0 0 24px rgba(0,212,255,0.25)'; e.currentTarget.style.transform = ''; }}
             >
               View Full Assessment
             </button>
             <button
-              onClick={clearSelectedLocation}
-              className="px-5 py-2.5 rounded-full border border-white/15 text-mist-dim text-sm font-body hover:text-mist transition-colors duration-300"
+              onClick={clearSelected}
+              className="px-6 py-2.5 rounded-full font-body text-sm text-mist-dim hover:text-mist transition-colors duration-300"
+              style={{ border: '1px solid rgba(255,255,255,0.12)' }}
             >
               Close
             </button>
