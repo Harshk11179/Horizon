@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore, SCENE_PHASE } from '@hooks/useAppStore';
 import Navbar from '@components/Navbar/Navbar';
 import ScrollParallaxLayer from './ScrollParallaxLayer';
+import LandingPage from '@components/Landing/LandingPage';
 
 const INTRO_STAGES = {
   BLACK: 0,
@@ -265,7 +266,12 @@ export default function HeroOverlay() {
           </motion.div>
         </section>
 
-        <div className="h-[300vh] w-full pointer-events-none" aria-hidden="true" />
+        {/* 150vh spacer (reduced per user request) — drives Earth camera zoom via useScrollProgress.
+             landing content follows below. */}
+        <div className="h-[150vh] w-full pointer-events-none" aria-hidden="true" />
+
+        {/* Landing page sections — only shown during hero / scrolling phase */}
+        {heroVisible && <LandingPage />}
       </div>
     </>
   );

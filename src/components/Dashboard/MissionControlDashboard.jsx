@@ -226,6 +226,10 @@ export default function MissionControlDashboard() {
           indicatorKey={detailModal.key}
           locationId={activeLocationId}
           data={detailModal.data}
+          rawData={{
+            temperature: locationData.indicators.temperature,
+            humidity: locationData.indicators.humidity,
+          }}
           onClose={() => setDetailModal(null)}
         />
       )}

@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAppStore } from '@hooks/useAppStore';
+import { useAppStore, USER_ROLE } from '@hooks/useAppStore';
 
 function ToggleRow({ label, description, checked, onChange }) {
   return (
@@ -37,6 +37,8 @@ export default function SettingsMenu() {
   const setTemperatureUnit = useAppStore((state) => state.setTemperatureUnit);
   const reducedMotion = useAppStore((state) => state.reducedMotion);
   const setReducedMotion = useAppStore((state) => state.setReducedMotion);
+  const userRole = useAppStore((state) => state.userRole);
+  const setUserRole = useAppStore((state) => state.setUserRole);
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -108,6 +110,33 @@ export default function SettingsMenu() {
               checked={reducedMotion}
               onChange={setReducedMotion}
             />
+
+            <div className="flex items-center justify-between gap-4 px-4 py-2.5 border-t border-white/[0.06] mt-1">
+              <div>
+                <div className="font-body text-sm text-mist">Mode</div>
+                <div className="font-mono text-[10px] text-mist-dim/70 mt-0.5">
+                  Engineer unlocks raw sensor data
+                </div>
+              </div>
+              <div className="flex rounded-full border border-white/10 overflow-hidden">
+                {[
+                  { id: USER_ROLE.CITIZEN, label: 'Citizen' },
+                  { id: USER_ROLE.ENGINEER, label: 'Engineer' },
+                ].map((role) => (
+                  <button
+                    key={role.id}
+                    onClick={() => setUserRole(role.id)}
+                    className={`px-3 py-1 font-mono text-xs transition-colors duration-200 ${
+                      userRole === role.id
+                        ? 'bg-neon-blue/15 text-neon-blue'
+                        : 'text-mist-dim hover:text-mist'
+                    }`}
+                  >
+                    {role.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

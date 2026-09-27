@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore, DASHBOARD_VIEW, SCENE_PHASE } from '@hooks/useAppStore';
 import SettingsMenu from './SettingsMenu';

@@ -4,7 +4,7 @@ import { create } from 'zustand';
  * useAppStore
  *
  * Deliberately thin. This holds ONLY state that needs to be shared
- * across parts of the tree that aren't parent/child — the Earth scene,
+ * across parts of the tree that aren't parent/child â€” the Earth scene,
  * the location overlay, and the dashboard all need to know which
  * location is selected, but they don't share a direct component
  * relationship in the tree the prompt's own architecture defines.
@@ -23,11 +23,14 @@ export const SCENE_PHASE = {
 };
 
 export const DASHBOARD_VIEW = {
-  MISSION_CONTROL: 'mission_control',
+  MAP: 'map',
   CITIZEN: 'citizen',
   PROFESSIONAL: 'professional',
-  COMPARE: 'compare',
-  RANKINGS: 'rankings',
+};
+
+export const USER_ROLE = {
+  CITIZEN: 'citizen',
+  ENGINEER: 'engineer',
 };
 
 const SETTINGS_KEY = 'horizon-settings';
@@ -47,7 +50,7 @@ function persistSetting(key, value) {
       JSON.stringify({ ...loadStoredSettings(), [key]: value })
     );
   } catch {
-    // Storage unavailable (private mode etc.) — setting still applies
+    // Storage unavailable (private mode etc.) â€” setting still applies
     // for this session, it just won't survive a reload.
   }
 }
@@ -71,7 +74,7 @@ export const useAppStore = create((set) => ({
   selectedLocationId: null,
   // Selecting a location from the globe triggers the fly-to
   // (LOCATION_FOCUS); selecting from within the dashboard keeps the
-  // dashboard open and just swaps its data — otherwise the dashboard's
+  // dashboard open and just swaps its data â€” otherwise the dashboard's
   // own LocationSelector would eject the user back to the globe.
   setSelectedLocationId: (id) =>
     set((state) => ({
@@ -87,8 +90,11 @@ export const useAppStore = create((set) => ({
     set({ selectedLocationId: null, scenePhase: SCENE_PHASE.HERO }),
 
   // --- Active dashboard sub-view, once inside Mission Control ---
-  activeDashboardView: DASHBOARD_VIEW.MISSION_CONTROL,
+  activeDashboardView: DASHBOARD_VIEW.MAP,
   setActiveDashboardView: (view) => set({ activeDashboardView: view }),
+
+  isLoggedIn: false,
+  setIsLoggedIn: (status) => set({ isLoggedIn: status }),
 
   // --- Transient toast notification (one at a time; ToastHost renders
   //     and auto-dismisses it) ---
@@ -96,7 +102,7 @@ export const useAppStore = create((set) => ({
   showToast: (toast) => set({ toast: { id: Date.now(), ...toast } }),
   clearToast: () => set({ toast: null }),
 
-  // --- "/" hotkey → open the active view's location search. A counter
+  // --- "/" hotkey â†’ open the active view's location search. A counter
   //     rather than a boolean so repeated presses re-trigger the effect
   //     even if a previous open was dismissed. ---
   searchOpenSignal: 0,
@@ -115,12 +121,19 @@ export const useAppStore = create((set) => ({
     set({ reducedMotion: value });
   },
 
+  userRole: storedSettings.userRole ?? null,
+  setUserRole: (role) => {
+    persistSetting('userRole', role);
+    set({ userRole: role });
+  },
+
   // --- Global scroll progress (0-1), read by EarthScene to drive the
   //     camera-fly-toward-Earth interpolation described in the brief.
-  //     Written by the scroll-tracking hook, read by the 3D scene —
+  //     Written by the scroll-tracking hook, read by the 3D scene â€”
   //     this is the clearest case of state needing to cross from a DOM
   //     concern into a Three.js concern, which is why it lives here
   //     rather than as prop-drilled state.
   scrollProgress: 0,
   setScrollProgress: (progress) => set({ scrollProgress: progress }),
 }));
+

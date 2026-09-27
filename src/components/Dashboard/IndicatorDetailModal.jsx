@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { getAllLocations, getTrendData } from '@services/environmentalDataService';
+import { getAllLocations } from '@services/environmentalDataService';
+import { useAppStore, USER_ROLE } from '@hooks/useAppStore';
 
 const INDICATOR_INFO = {
   airQuality: {
@@ -9,6 +10,8 @@ const INDICATOR_INFO = {
     lowerIsBetter: true,
     description:
       'The Air Quality Index measures the concentration of pollutants — primarily PM2.5, PM10, NO₂, SO₂, and ground-level ozone — in the atmosphere. Lower values indicate cleaner air and lower health risk for residents and ecosystems.',
+    methodology:
+      'Composite index derived from ground-station PM2.5/PM10 concentrations, NO₂ and SO₂ spectrophotometry, and ozone photometry, normalized against WHO reference bands and averaged over a rolling 24-hour window.',
     scale: [
       { max: 30, label: 'Good', color: '#00FFA3' },
       { max: 60, label: 'Moderate', color: '#00D9FF' },
@@ -21,6 +24,8 @@ const INDICATOR_INFO = {
     lowerIsBetter: true,
     description:
       'Water stress measures how much of the available freshwater is withdrawn for human use relative to natural replenishment. High values signal that demand is outpacing sustainable supply, increasing the risk of shortages and aquifer depletion.',
+    methodology:
+      'Ratio of total freshwater withdrawal (agricultural, industrial, municipal) to renewable supply, modeled from basin-level hydrological data and reservoir telemetry, updated on a monthly cadence.',
     scale: [
       { max: 25, label: 'Low', color: '#00FFA3' },
       { max: 50, label: 'Moderate', color: '#00D9FF' },
@@ -33,6 +38,8 @@ const INDICATOR_INFO = {
     lowerIsBetter: false,
     description:
       'Green cover represents the percentage of land area occupied by vegetation — forests, shrubland, grassland, and urban greenery. Higher values support biodiversity, absorb CO₂, regulate temperature, and reduce flood risk.',
+    methodology:
+      'Estimated via multispectral satellite imagery (NDVI thresholding) cross-referenced with land-use registries, classified into vegetation categories and expressed as a share of total land area.',
     scale: [
       { max: 30, label: 'Low', color: '#FF3B5C' },
       { max: 50, label: 'Moderate', color: '#00D9FF' },
@@ -45,6 +52,8 @@ const INDICATOR_INFO = {
     lowerIsBetter: true,
     description:
       'A composite index of exposure to extreme weather events — heatwaves, flooding, droughts, and storms — weighted by the region\'s projected frequency and severity under current emissions trajectories. Lower values indicate greater resilience.',
+    methodology:
+      'Blends historical hazard frequency, climate-model projections (RCP-weighted), and regional exposure/vulnerability factors such as infrastructure density and elevation, recalculated quarterly.',
     scale: [
       { max: 30, label: 'Low', color: '#00FFA3' },
       { max: 60, label: 'Elevated', color: '#00D9FF' },
@@ -57,6 +66,8 @@ const INDICATOR_INFO = {
     lowerIsBetter: false,
     description:
       'A species richness and habitat-integrity index derived from observed and modelled species counts for the region. Higher values indicate a broader and healthier mix of flora and fauna, a signal of ecosystem stability and resilience.',
+    methodology:
+      'Combines field survey counts, camera-trap and eDNA sampling, and habitat-connectivity modeling into a normalized richness score, benchmarked against regional historical baselines.',
     scale: [
       { max: 40, label: 'Low', color: '#FF3B5C' },
       { max: 65, label: 'Moderate', color: '#00D9FF' },
@@ -135,8 +146,10 @@ function CrossLocationChart({ indicatorKey, currentLocationId, info }) {
   );
 }
 
-export default function IndicatorDetailModal({ indicatorKey, locationId, data, onClose }) {
+export default function IndicatorDetailModal({ indicatorKey, locationId, data, rawData, onClose }) {
   const info = INDICATOR_INFO[indicatorKey];
+  const userRole = useAppStore((state) => state.userRole);
+  const isEngineer = userRole === USER_ROLE.ENGINEER;
 
   // Dismiss on Escape or backdrop click
   useEffect(() => {
@@ -234,6 +247,42 @@ export default function IndicatorDetailModal({ indicatorKey, locationId, data, o
             <p className="font-body text-sm text-mist-dim leading-relaxed mb-8">
               {info.description}
             </p>
+          )}
+
+          {/* Engineer mode: methodology + raw sensor readings */}
+          {isEngineer && info?.methodology && (
+            <div className="mb-8 rounded border border-neon-blue/20 bg-neon-blue/[0.04] p-4">
+              <div className="font-mono text-[10px] uppercase tracking-widest text-neon-blue mb-2">
+                ⚙ Methodology
+              </div>
+              <p className="font-body text-xs text-mist-dim leading-relaxed mb-4">
+                {info.methodology}
+              </p>
+              {rawData && (
+                <div className="flex gap-6 pt-3 border-t border-white/[0.06]">
+                  {rawData.temperature && (
+                    <div>
+                      <div className="font-mono text-[9px] uppercase tracking-wide text-mist-dim/70">
+                        Raw temperature
+                      </div>
+                      <div className="font-mono text-sm text-mist tabular-nums">
+                        {rawData.temperature.value}{rawData.temperature.unit}
+                      </div>
+                    </div>
+                  )}
+                  {rawData.humidity && (
+                    <div>
+                      <div className="font-mono text-[9px] uppercase tracking-wide text-mist-dim/70">
+                        Raw humidity
+                      </div>
+                      <div className="font-mono text-sm text-mist tabular-nums">
+                        {rawData.humidity.value}{rawData.humidity.unit}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
           )}
 
           {/* Cross-location comparison */}

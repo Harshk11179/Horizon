@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { motion, useAnimationFrame } from 'framer-motion';
 
 const SIZE_CONFIG = {
