@@ -1,0 +1,7 @@
+indicator_id,dimension,label,direction,low_reference,high_reference,weight,applicable
+pm25_annual,air_pollution,Annual PM2.5,higher_worse,5,75,1,true
+forest_cover_pct,forest_cover,Forest cover,higher_better,33,0,1,true
+groundwater_extraction_pct,groundwater,Groundwater extraction stage,higher_worse,0,100,1,true
+nitrogen_fertiliser_kg_ha,fertiliser_nutrients,Nitrogen fertiliser use,higher_worse,20,180,1,true
+phosphorus_fertiliser_kg_ha,fertiliser_nutrients,Phosphorus fertiliser use,higher_worse,10,70,1,true
+hazardous_waste_generated,hazardous_waste,Hazardous waste generation,higher_worse,0,1000000,1,true

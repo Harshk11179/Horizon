@@ -1,6 +1,5 @@
 import SectionPlanetaryHealth from './SectionPlanetaryHealth';
 import SectionPlanetaryBoundaries from './SectionPlanetaryBoundaries';
-import SectionGlobalToLocal from './SectionGlobalToLocal';
 import SectionRiskPrediction from './SectionRiskPrediction';
 import SectionSatelliteChange from './SectionSatelliteChange';
 import SectionUserTypes from './SectionUserTypes';
@@ -27,10 +26,9 @@ export default function LandingPage() {
     <div className="relative w-full" aria-label="Horizon landing page content">
       <SectionPlanetaryHealth />
       <SectionPlanetaryBoundaries />
-      <SectionGlobalToLocal />
+      <SectionUserTypes />
       <SectionRiskPrediction />
       <SectionSatelliteChange />
-      <SectionUserTypes />
       <SectionAIEngine />
       <SectionLocationComparison />
       <SectionReport />

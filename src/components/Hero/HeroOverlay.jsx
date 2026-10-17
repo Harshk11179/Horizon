@@ -166,7 +166,7 @@ export default function HeroOverlay() {
                     className="font-mono text-[11px] uppercase tracking-[0.25em]"
                     style={{ color: 'rgba(0,212,255,0.8)' }}
                   >
-                    AI Environmental Intelligence
+                    Start Exploring
                   </span>
                   <span className="w-6 h-px bg-neon-blue/60" />
                 </motion.div>
@@ -176,19 +176,19 @@ export default function HeroOverlay() {
                   initial={{ opacity: 0, y: 28 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 3.75, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-display font-semibold text-7xl md:text-[100px] leading-[0.95] tracking-tight mb-6"
+                  className="font-display font-semibold text-5xl md:text-6xl lg:text-7xl text-mist leading-[1.05] tracking-tight mb-6"
                 >
+                  Understand the environment.{' '}
+                  <br />
                   <span
                     style={{
-                      background: 'linear-gradient(135deg,#EDF6FF 30%,rgba(237,246,255,0.7) 100%)',
+                      background: 'linear-gradient(135deg, #00D4FF 0%, #00F5A0 60%, #4F8EFF 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
-                      textShadow: 'none',
-                      filter: 'drop-shadow(0 0 40px rgba(0,212,255,0.2))',
                     }}
                   >
-                    Horizon
+                    Act before it&apos;s too late.
                   </span>
                 </motion.h1>
 
@@ -197,10 +197,10 @@ export default function HeroOverlay() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 3.9, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-body text-lg md:text-xl text-mist-dim tracking-wide leading-relaxed max-w-2xl mb-10"
+                  className="font-body text-xl text-mist-dim tracking-wide leading-relaxed max-w-2xl mb-10"
                 >
-                  Real-time planetary intelligence. Monitor environmental health,
-                  predict risks, and guide sustainable decisions — at any scale.
+                  From planetary health to local decisions, Horizon turns environmental
+                  data into intelligence you can act on.
                 </motion.p>
 
                 {/* CTA buttons */}

@@ -1,0 +1,37 @@
+state_code,state_name,year,indicator_id,dimension,label,value,unit,direction,low_reference,high_reference,weight,pressure_score,percentile_rank,source_name,source_url,methodology,confidence
+MH,Maharashtra,2024,pm25_annual,air_pollution,Annual PM2.5,48.0,ug_m3,higher_worse,5,75,1,61.43,50.0,Illustrative seed data,manual,annual mean PM2.5 proxy,low
+DL,Delhi,2024,pm25_annual,air_pollution,Annual PM2.5,105.0,ug_m3,higher_worse,5,75,1,100.0,91.7,Illustrative seed data,manual,annual mean PM2.5 proxy,low
+PB,Punjab,2024,pm25_annual,air_pollution,Annual PM2.5,76.0,ug_m3,higher_worse,5,75,1,100.0,91.7,Illustrative seed data,manual,annual mean PM2.5 proxy,low
+KA,Karnataka,2024,pm25_annual,air_pollution,Annual PM2.5,34.0,ug_m3,higher_worse,5,75,1,41.43,33.3,Illustrative seed data,manual,annual mean PM2.5 proxy,low
+KL,Kerala,2024,pm25_annual,air_pollution,Annual PM2.5,25.0,ug_m3,higher_worse,5,75,1,28.57,16.7,Illustrative seed data,manual,annual mean PM2.5 proxy,low
+RJ,Rajasthan,2024,pm25_annual,air_pollution,Annual PM2.5,67.0,ug_m3,higher_worse,5,75,1,88.57,66.7,Illustrative seed data,manual,annual mean PM2.5 proxy,low
+MH,Maharashtra,2023,forest_cover_pct,forest_cover,Forest cover,16.5,percent,higher_better,33,0,1,50.0,66.7,Illustrative seed data,manual,state forest cover percentage,low
+DL,Delhi,2023,forest_cover_pct,forest_cover,Forest cover,13.2,percent,higher_better,33,0,1,40.0,50.0,Illustrative seed data,manual,state forest cover percentage,low
+PB,Punjab,2023,forest_cover_pct,forest_cover,Forest cover,3.7,percent,higher_better,33,0,1,11.21,16.7,Illustrative seed data,manual,state forest cover percentage,low
+KA,Karnataka,2023,forest_cover_pct,forest_cover,Forest cover,20.1,percent,higher_better,33,0,1,60.91,83.3,Illustrative seed data,manual,state forest cover percentage,low
+KL,Kerala,2023,forest_cover_pct,forest_cover,Forest cover,54.7,percent,higher_better,33,0,1,100.0,100.0,Illustrative seed data,manual,state forest cover percentage,low
+RJ,Rajasthan,2023,forest_cover_pct,forest_cover,Forest cover,4.9,percent,higher_better,33,0,1,14.85,33.3,Illustrative seed data,manual,state forest cover percentage,low
+MH,Maharashtra,2023,groundwater_extraction_pct,groundwater,Groundwater extraction stage,61.0,percent,higher_worse,0,100,1,61.0,33.3,Illustrative seed data,manual,annual extraction divided by extractable resource,low
+DL,Delhi,2023,groundwater_extraction_pct,groundwater,Groundwater extraction stage,98.0,percent,higher_worse,0,100,1,98.0,66.7,Illustrative seed data,manual,annual extraction divided by extractable resource,low
+PB,Punjab,2023,groundwater_extraction_pct,groundwater,Groundwater extraction stage,145.0,percent,higher_worse,0,100,1,100.0,91.7,Illustrative seed data,manual,annual extraction divided by extractable resource,low
+KA,Karnataka,2023,groundwater_extraction_pct,groundwater,Groundwater extraction stage,70.0,percent,higher_worse,0,100,1,70.0,50.0,Illustrative seed data,manual,annual extraction divided by extractable resource,low
+KL,Kerala,2023,groundwater_extraction_pct,groundwater,Groundwater extraction stage,53.0,percent,higher_worse,0,100,1,53.0,16.7,Illustrative seed data,manual,annual extraction divided by extractable resource,low
+RJ,Rajasthan,2023,groundwater_extraction_pct,groundwater,Groundwater extraction stage,140.0,percent,higher_worse,0,100,1,100.0,91.7,Illustrative seed data,manual,annual extraction divided by extractable resource,low
+MH,Maharashtra,2022,nitrogen_fertiliser_kg_ha,fertiliser_nutrients,Nitrogen fertiliser use,112.0,kg_per_hectare,higher_worse,20,180,1,57.5,83.3,Illustrative seed data,manual,nutrient consumption divided by cropped area,low
+DL,Delhi,2022,nitrogen_fertiliser_kg_ha,fertiliser_nutrients,Nitrogen fertiliser use,85.0,kg_per_hectare,higher_worse,20,180,1,40.62,33.3,Illustrative seed data,manual,nutrient consumption divided by cropped area,low
+PB,Punjab,2022,nitrogen_fertiliser_kg_ha,fertiliser_nutrients,Nitrogen fertiliser use,190.0,kg_per_hectare,higher_worse,20,180,1,100.0,100.0,Illustrative seed data,manual,nutrient consumption divided by cropped area,low
+KA,Karnataka,2022,nitrogen_fertiliser_kg_ha,fertiliser_nutrients,Nitrogen fertiliser use,92.0,kg_per_hectare,higher_worse,20,180,1,45.0,50.0,Illustrative seed data,manual,nutrient consumption divided by cropped area,low
+KL,Kerala,2022,nitrogen_fertiliser_kg_ha,fertiliser_nutrients,Nitrogen fertiliser use,78.0,kg_per_hectare,higher_worse,20,180,1,36.25,16.7,Illustrative seed data,manual,nutrient consumption divided by cropped area,low
+RJ,Rajasthan,2022,nitrogen_fertiliser_kg_ha,fertiliser_nutrients,Nitrogen fertiliser use,105.0,kg_per_hectare,higher_worse,20,180,1,53.12,66.7,Illustrative seed data,manual,nutrient consumption divided by cropped area,low
+MH,Maharashtra,2022,phosphorus_fertiliser_kg_ha,fertiliser_nutrients,Phosphorus fertiliser use,41.0,kg_per_hectare,higher_worse,10,70,1,51.67,83.3,Illustrative seed data,manual,nutrient consumption divided by cropped area,low
+DL,Delhi,2022,phosphorus_fertiliser_kg_ha,fertiliser_nutrients,Phosphorus fertiliser use,28.0,kg_per_hectare,higher_worse,10,70,1,30.0,16.7,Illustrative seed data,manual,nutrient consumption divided by cropped area,low
+PB,Punjab,2022,phosphorus_fertiliser_kg_ha,fertiliser_nutrients,Phosphorus fertiliser use,62.0,kg_per_hectare,higher_worse,10,70,1,86.67,100.0,Illustrative seed data,manual,nutrient consumption divided by cropped area,low
+KA,Karnataka,2022,phosphorus_fertiliser_kg_ha,fertiliser_nutrients,Phosphorus fertiliser use,35.0,kg_per_hectare,higher_worse,10,70,1,41.67,50.0,Illustrative seed data,manual,nutrient consumption divided by cropped area,low
+KL,Kerala,2022,phosphorus_fertiliser_kg_ha,fertiliser_nutrients,Phosphorus fertiliser use,30.0,kg_per_hectare,higher_worse,10,70,1,33.33,33.3,Illustrative seed data,manual,nutrient consumption divided by cropped area,low
+RJ,Rajasthan,2022,phosphorus_fertiliser_kg_ha,fertiliser_nutrients,Phosphorus fertiliser use,39.0,kg_per_hectare,higher_worse,10,70,1,48.33,66.7,Illustrative seed data,manual,nutrient consumption divided by cropped area,low
+MH,Maharashtra,2023,hazardous_waste_generated,hazardous_waste,Hazardous waste generation,650000.0,tonnes_per_year,higher_worse,0,1000000,1,65.0,100.0,Illustrative seed data,manual,annual hazardous waste generation,low
+DL,Delhi,2023,hazardous_waste_generated,hazardous_waste,Hazardous waste generation,180000.0,tonnes_per_year,higher_worse,0,1000000,1,18.0,33.3,Illustrative seed data,manual,annual hazardous waste generation,low
+PB,Punjab,2023,hazardous_waste_generated,hazardous_waste,Hazardous waste generation,210000.0,tonnes_per_year,higher_worse,0,1000000,1,21.0,50.0,Illustrative seed data,manual,annual hazardous waste generation,low
+KA,Karnataka,2023,hazardous_waste_generated,hazardous_waste,Hazardous waste generation,520000.0,tonnes_per_year,higher_worse,0,1000000,1,52.0,83.3,Illustrative seed data,manual,annual hazardous waste generation,low
+KL,Kerala,2023,hazardous_waste_generated,hazardous_waste,Hazardous waste generation,160000.0,tonnes_per_year,higher_worse,0,1000000,1,16.0,16.7,Illustrative seed data,manual,annual hazardous waste generation,low
+RJ,Rajasthan,2023,hazardous_waste_generated,hazardous_waste,Hazardous waste generation,430000.0,tonnes_per_year,higher_worse,0,1000000,1,43.0,66.7,Illustrative seed data,manual,annual hazardous waste generation,low

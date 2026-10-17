@@ -1,0 +1,19 @@
+state_code,state_name,year,overall_score,risk_band,grade,map_colour,dimensions_available,coverage_pct,air_pollution_score,forest_cover_score,groundwater_score,fertiliser_nutrients_score,hazardous_waste_score,top_pressure_dimensions,region,capital_lat,capital_lng
+DL,Delhi,2022,35.31,Moderate,B,#F9A825,1.0,20.0,,,,35.31,,Fertiliser (35),North,28.6139,77.209
+DL,Delhi,2023,52.0,High,C,#E65100,3.0,60.0,,40.0,98.0,,18.0,"Groundwater (98), Forest cover (40), Hazardous waste (18)",North,28.6139,77.209
+DL,Delhi,2024,100.0,Critical,D,#B71C1C,1.0,20.0,100.0,,,,,Air pollution (100),North,28.6139,77.209
+KA,Karnataka,2022,43.34,Moderate,B,#F9A825,1.0,20.0,,,,43.34,,Fertiliser (43),South,12.9716,77.5946
+KA,Karnataka,2023,60.97,High,C,#E65100,3.0,60.0,,60.91,70.0,,52.0,"Groundwater (70), Forest cover (61), Hazardous waste (52)",South,12.9716,77.5946
+KA,Karnataka,2024,41.43,Moderate,B,#F9A825,1.0,20.0,41.43,,,,,Air pollution (41),South,12.9716,77.5946
+KL,Kerala,2022,34.79,Moderate,B,#F9A825,1.0,20.0,,,,34.79,,Fertiliser (35),South,8.5241,76.9366
+KL,Kerala,2023,56.33,High,C,#E65100,3.0,60.0,,100.0,53.0,,16.0,"Forest cover (100), Groundwater (53), Hazardous waste (16)",South,8.5241,76.9366
+KL,Kerala,2024,28.57,Moderate,B,#F9A825,1.0,20.0,28.57,,,,,Air pollution (29),South,8.5241,76.9366
+MH,Maharashtra,2022,54.59,High,C,#E65100,1.0,20.0,,,,54.59,,Fertiliser (55),West,19.076,72.8777
+MH,Maharashtra,2023,58.67,High,C,#E65100,3.0,60.0,,50.0,61.0,,65.0,"Hazardous waste (65), Groundwater (61), Forest cover (50)",West,19.076,72.8777
+MH,Maharashtra,2024,61.43,High,C,#E65100,1.0,20.0,61.43,,,,,Air pollution (61),West,19.076,72.8777
+PB,Punjab,2022,93.34,Critical,D,#B71C1C,1.0,20.0,,,,93.34,,Fertiliser (93),North,30.901,75.8573
+PB,Punjab,2023,44.07,Moderate,B,#F9A825,3.0,60.0,,11.21,100.0,,21.0,"Groundwater (100), Hazardous waste (21), Forest cover (11)",North,30.901,75.8573
+PB,Punjab,2024,100.0,Critical,D,#B71C1C,1.0,20.0,100.0,,,,,Air pollution (100),North,30.901,75.8573
+RJ,Rajasthan,2022,50.72,High,C,#E65100,1.0,20.0,,,,50.72,,Fertiliser (51),West,26.9124,75.7873
+RJ,Rajasthan,2023,52.62,High,C,#E65100,3.0,60.0,,14.85,100.0,,43.0,"Groundwater (100), Hazardous waste (43), Forest cover (15)",West,26.9124,75.7873
+RJ,Rajasthan,2024,88.57,Critical,D,#B71C1C,1.0,20.0,88.57,,,,,Air pollution (89),West,26.9124,75.7873

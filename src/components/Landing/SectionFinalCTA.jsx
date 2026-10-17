@@ -67,7 +67,7 @@ export default function SectionFinalCTA() {
         >
           <span className="w-8 h-px bg-neon-blue/40" />
           <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-neon-blue/70">
-            Start Exploring
+            AI Environmental Intelligence
           </span>
           <span className="w-8 h-px bg-neon-blue/40" />
         </motion.div>
@@ -77,19 +77,19 @@ export default function SectionFinalCTA() {
           initial={{ opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display font-semibold text-5xl md:text-6xl lg:text-7xl text-mist leading-[1.05] tracking-tight mb-6"
+          className="font-display font-semibold text-7xl md:text-[100px] leading-[0.95] tracking-tight mb-6"
         >
-          Understand the environment.{' '}
-          <br />
           <span
             style={{
-              background: 'linear-gradient(135deg, #00D4FF 0%, #00F5A0 60%, #4F8EFF 100%)',
+              background: 'linear-gradient(135deg,#EDF6FF 30%,rgba(237,246,255,0.7) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
+              textShadow: 'none',
+              filter: 'drop-shadow(0 0 40px rgba(0,212,255,0.2))',
             }}
           >
-            Act before it&apos;s too late.
+            Horizon
           </span>
         </motion.h2>
 
@@ -98,10 +98,10 @@ export default function SectionFinalCTA() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="font-body text-xl text-mist-dim max-w-2xl mx-auto leading-relaxed mb-12"
+          className="font-body text-lg md:text-xl text-mist-dim max-w-2xl mx-auto leading-relaxed mb-12"
         >
-          From planetary health to local decisions, Horizon turns environmental
-          data into intelligence you can act on.
+          Real-time planetary intelligence. Monitor environmental health,
+          predict risks, and guide sustainable decisions — at any scale.
         </motion.p>
 
         {/* CTA buttons */}
