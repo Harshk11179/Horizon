@@ -120,7 +120,7 @@ export default function MapView() {
 
         {/* Footer */}
         <div style={{ padding: '10px 16px', borderTop: '1px solid #f3f4f6', fontSize: 10, color: '#9ca3af' }}>
-          Data: Illustrative seed · Updated 2024 · Horizon
+          Data: CPCB Stations · CGWB 798 Wells · FSI 36-Districts · Horizon
         </div>
       </div>
 

@@ -1,242 +1,242 @@
 [
   {
-    "state_code": "DL",
-    "state_name": "Delhi",
-    "year": 2022,
-    "dimension": "fertiliser_nutrients",
-    "dimension_score": 35.31,
-    "indicators_available": 2.0
+    "state_code":"DL",
+    "state_name":"Delhi",
+    "year":2023,
+    "dimension":"forest_cover",
+    "dimension_score":40.0,
+    "indicators_available":1
   },
   {
-    "state_code": "DL",
-    "state_name": "Delhi",
-    "year": 2023,
-    "dimension": "forest_cover",
-    "dimension_score": 40.0,
-    "indicators_available": 1.0
+    "state_code":"DL",
+    "state_name":"Delhi",
+    "year":2023,
+    "dimension":"groundwater",
+    "dimension_score":98.0,
+    "indicators_available":1
   },
   {
-    "state_code": "DL",
-    "state_name": "Delhi",
-    "year": 2023,
-    "dimension": "groundwater",
-    "dimension_score": 98.0,
-    "indicators_available": 1.0
+    "state_code":"DL",
+    "state_name":"Delhi",
+    "year":2023,
+    "dimension":"hazardous_waste",
+    "dimension_score":18.0,
+    "indicators_available":1
   },
   {
-    "state_code": "DL",
-    "state_name": "Delhi",
-    "year": 2023,
-    "dimension": "hazardous_waste",
-    "dimension_score": 18.0,
-    "indicators_available": 1.0
+    "state_code":"DL",
+    "state_name":"Delhi",
+    "year":2024,
+    "dimension":"air_pollution",
+    "dimension_score":100.0,
+    "indicators_available":1
   },
   {
-    "state_code": "DL",
-    "state_name": "Delhi",
-    "year": 2024,
-    "dimension": "air_pollution",
-    "dimension_score": 100.0,
-    "indicators_available": 1.0
+    "state_code":"KA",
+    "state_name":"Karnataka",
+    "year":2023,
+    "dimension":"forest_cover",
+    "dimension_score":60.91,
+    "indicators_available":1
   },
   {
-    "state_code": "KA",
-    "state_name": "Karnataka",
-    "year": 2022,
-    "dimension": "fertiliser_nutrients",
-    "dimension_score": 43.34,
-    "indicators_available": 2.0
+    "state_code":"KA",
+    "state_name":"Karnataka",
+    "year":2023,
+    "dimension":"groundwater",
+    "dimension_score":70.0,
+    "indicators_available":1
   },
   {
-    "state_code": "KA",
-    "state_name": "Karnataka",
-    "year": 2023,
-    "dimension": "forest_cover",
-    "dimension_score": 60.91,
-    "indicators_available": 1.0
+    "state_code":"KA",
+    "state_name":"Karnataka",
+    "year":2023,
+    "dimension":"hazardous_waste",
+    "dimension_score":52.0,
+    "indicators_available":1
   },
   {
-    "state_code": "KA",
-    "state_name": "Karnataka",
-    "year": 2023,
-    "dimension": "groundwater",
-    "dimension_score": 70.0,
-    "indicators_available": 1.0
+    "state_code":"KA",
+    "state_name":"Karnataka",
+    "year":2024,
+    "dimension":"air_pollution",
+    "dimension_score":41.43,
+    "indicators_available":1
   },
   {
-    "state_code": "KA",
-    "state_name": "Karnataka",
-    "year": 2023,
-    "dimension": "hazardous_waste",
-    "dimension_score": 52.0,
-    "indicators_available": 1.0
+    "state_code":"KL",
+    "state_name":"Kerala",
+    "year":2023,
+    "dimension":"forest_cover",
+    "dimension_score":100.0,
+    "indicators_available":1
   },
   {
-    "state_code": "KA",
-    "state_name": "Karnataka",
-    "year": 2024,
-    "dimension": "air_pollution",
-    "dimension_score": 41.43,
-    "indicators_available": 1.0
+    "state_code":"KL",
+    "state_name":"Kerala",
+    "year":2023,
+    "dimension":"groundwater",
+    "dimension_score":53.0,
+    "indicators_available":1
   },
   {
-    "state_code": "KL",
-    "state_name": "Kerala",
-    "year": 2022,
-    "dimension": "fertiliser_nutrients",
-    "dimension_score": 34.79,
-    "indicators_available": 2.0
+    "state_code":"KL",
+    "state_name":"Kerala",
+    "year":2023,
+    "dimension":"hazardous_waste",
+    "dimension_score":16.0,
+    "indicators_available":1
   },
   {
-    "state_code": "KL",
-    "state_name": "Kerala",
-    "year": 2023,
-    "dimension": "forest_cover",
-    "dimension_score": 100.0,
-    "indicators_available": 1.0
+    "state_code":"KL",
+    "state_name":"Kerala",
+    "year":2024,
+    "dimension":"air_pollution",
+    "dimension_score":28.57,
+    "indicators_available":1
   },
   {
-    "state_code": "KL",
-    "state_name": "Kerala",
-    "year": 2023,
-    "dimension": "groundwater",
-    "dimension_score": 53.0,
-    "indicators_available": 1.0
+    "state_code":"MH",
+    "state_name":"Maharashtra",
+    "year":2023,
+    "dimension":"forest_cover",
+    "dimension_score":50.09,
+    "indicators_available":1
   },
   {
-    "state_code": "KL",
-    "state_name": "Kerala",
-    "year": 2023,
-    "dimension": "hazardous_waste",
-    "dimension_score": 16.0,
-    "indicators_available": 1.0
+    "state_code":"MH",
+    "state_name":"Maharashtra",
+    "year":2023,
+    "dimension":"groundwater",
+    "dimension_score":61.0,
+    "indicators_available":1
   },
   {
-    "state_code": "KL",
-    "state_name": "Kerala",
-    "year": 2024,
-    "dimension": "air_pollution",
-    "dimension_score": 28.57,
-    "indicators_available": 1.0
+    "state_code":"MH",
+    "state_name":"Maharashtra",
+    "year":2023,
+    "dimension":"hazardous_waste",
+    "dimension_score":65.0,
+    "indicators_available":1
   },
   {
-    "state_code": "MH",
-    "state_name": "Maharashtra",
-    "year": 2022,
-    "dimension": "fertiliser_nutrients",
-    "dimension_score": 54.59,
-    "indicators_available": 2.0
+    "state_code":"MH",
+    "state_name":"Maharashtra",
+    "year":2024,
+    "dimension":"air_pollution",
+    "dimension_score":62.86,
+    "indicators_available":1
   },
   {
-    "state_code": "MH",
-    "state_name": "Maharashtra",
-    "year": 2023,
-    "dimension": "forest_cover",
-    "dimension_score": 50.0,
-    "indicators_available": 1.0
+    "state_code":"PB",
+    "state_name":"Punjab",
+    "year":2023,
+    "dimension":"forest_cover",
+    "dimension_score":11.21,
+    "indicators_available":1
   },
   {
-    "state_code": "MH",
-    "state_name": "Maharashtra",
-    "year": 2023,
-    "dimension": "groundwater",
-    "dimension_score": 61.0,
-    "indicators_available": 1.0
+    "state_code":"PB",
+    "state_name":"Punjab",
+    "year":2023,
+    "dimension":"groundwater",
+    "dimension_score":100.0,
+    "indicators_available":1
   },
   {
-    "state_code": "MH",
-    "state_name": "Maharashtra",
-    "year": 2023,
-    "dimension": "hazardous_waste",
-    "dimension_score": 65.0,
-    "indicators_available": 1.0
+    "state_code":"PB",
+    "state_name":"Punjab",
+    "year":2023,
+    "dimension":"hazardous_waste",
+    "dimension_score":21.0,
+    "indicators_available":1
   },
   {
-    "state_code": "MH",
-    "state_name": "Maharashtra",
-    "year": 2024,
-    "dimension": "air_pollution",
-    "dimension_score": 61.43,
-    "indicators_available": 1.0
+    "state_code":"PB",
+    "state_name":"Punjab",
+    "year":2024,
+    "dimension":"air_pollution",
+    "dimension_score":100.0,
+    "indicators_available":1
   },
   {
-    "state_code": "PB",
-    "state_name": "Punjab",
-    "year": 2022,
-    "dimension": "fertiliser_nutrients",
-    "dimension_score": 93.34,
-    "indicators_available": 2.0
+    "state_code":"RJ",
+    "state_name":"Rajasthan",
+    "year":2023,
+    "dimension":"forest_cover",
+    "dimension_score":14.85,
+    "indicators_available":1
   },
   {
-    "state_code": "PB",
-    "state_name": "Punjab",
-    "year": 2023,
-    "dimension": "forest_cover",
-    "dimension_score": 11.21,
-    "indicators_available": 1.0
+    "state_code":"RJ",
+    "state_name":"Rajasthan",
+    "year":2023,
+    "dimension":"groundwater",
+    "dimension_score":100.0,
+    "indicators_available":1
   },
   {
-    "state_code": "PB",
-    "state_name": "Punjab",
-    "year": 2023,
-    "dimension": "groundwater",
-    "dimension_score": 100.0,
-    "indicators_available": 1.0
+    "state_code":"RJ",
+    "state_name":"Rajasthan",
+    "year":2023,
+    "dimension":"hazardous_waste",
+    "dimension_score":43.0,
+    "indicators_available":1
   },
   {
-    "state_code": "PB",
-    "state_name": "Punjab",
-    "year": 2023,
-    "dimension": "hazardous_waste",
-    "dimension_score": 21.0,
-    "indicators_available": 1.0
+    "state_code":"RJ",
+    "state_name":"Rajasthan",
+    "year":2024,
+    "dimension":"air_pollution",
+    "dimension_score":88.57,
+    "indicators_available":1
   },
   {
-    "state_code": "PB",
-    "state_name": "Punjab",
-    "year": 2024,
-    "dimension": "air_pollution",
-    "dimension_score": 100.0,
-    "indicators_available": 1.0
+    "state_code":"DL",
+    "state_name":"Delhi",
+    "year":2022,
+    "dimension":"fertiliser_nutrients",
+    "dimension_score":35.31,
+    "indicators_available":2
   },
   {
-    "state_code": "RJ",
-    "state_name": "Rajasthan",
-    "year": 2022,
-    "dimension": "fertiliser_nutrients",
-    "dimension_score": 50.72,
-    "indicators_available": 2.0
+    "state_code":"KA",
+    "state_name":"Karnataka",
+    "year":2022,
+    "dimension":"fertiliser_nutrients",
+    "dimension_score":43.34,
+    "indicators_available":2
   },
   {
-    "state_code": "RJ",
-    "state_name": "Rajasthan",
-    "year": 2023,
-    "dimension": "forest_cover",
-    "dimension_score": 14.85,
-    "indicators_available": 1.0
+    "state_code":"KL",
+    "state_name":"Kerala",
+    "year":2022,
+    "dimension":"fertiliser_nutrients",
+    "dimension_score":34.79,
+    "indicators_available":2
   },
   {
-    "state_code": "RJ",
-    "state_name": "Rajasthan",
-    "year": 2023,
-    "dimension": "groundwater",
-    "dimension_score": 100.0,
-    "indicators_available": 1.0
+    "state_code":"MH",
+    "state_name":"Maharashtra",
+    "year":2022,
+    "dimension":"fertiliser_nutrients",
+    "dimension_score":54.58,
+    "indicators_available":2
   },
   {
-    "state_code": "RJ",
-    "state_name": "Rajasthan",
-    "year": 2023,
-    "dimension": "hazardous_waste",
-    "dimension_score": 43.0,
-    "indicators_available": 1.0
+    "state_code":"PB",
+    "state_name":"Punjab",
+    "year":2022,
+    "dimension":"fertiliser_nutrients",
+    "dimension_score":93.34,
+    "indicators_available":2
   },
   {
-    "state_code": "RJ",
-    "state_name": "Rajasthan",
-    "year": 2024,
-    "dimension": "air_pollution",
-    "dimension_score": 88.57,
-    "indicators_available": 1.0
+    "state_code":"RJ",
+    "state_name":"Rajasthan",
+    "year":2022,
+    "dimension":"fertiliser_nutrients",
+    "dimension_score":50.72,
+    "indicators_available":2
   }
 ]

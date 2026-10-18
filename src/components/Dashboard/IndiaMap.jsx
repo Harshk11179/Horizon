@@ -9,6 +9,8 @@ import { useRef, useEffect, useState } from 'react';
 import { MapContainer, TileLayer, GeoJSON, CircleMarker, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import { latestStateScores, scoreByCode, pressureColour, riskBand } from '@hooks/useStateScores';
+import airQualityStationsData from '@data/airQualityStations.json';
+import groundwaterWellsData from '@data/groundwaterWells.json';
 
 // ─── India State GeoJSON (simplified polygons for 6 scored states + outline) ──
 // We embed small simplified polygons for the 6 states in our dataset.
@@ -112,6 +114,92 @@ function ScoreMarkers({ onSelect, selected, factor }) {
   });
 }
 
+// ─── Real Sensor & Well Network Markers ─────────────────────────────────────
+
+function SensorMarkers({ showSensors }) {
+  if (!showSensors) return null;
+
+  return (
+    <>
+      {/* CPCB Air Quality Stations */}
+      {airQualityStationsData.map((station) => (
+        <CircleMarker
+          key={station.id}
+          center={[station.lat, station.lng]}
+          radius={8}
+          pathOptions={{
+            fillColor: '#06B6D4',
+            fillOpacity: 0.95,
+            color: '#ffffff',
+            weight: 2,
+          }}
+        >
+          <Tooltip direction="top" offset={[0, -8]}>
+            <div style={{ minWidth: 170 }}>
+              <div style={{ fontSize: 9, fontWeight: 700, color: '#0891B2', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                CPCB Continuous Telemetry Station
+              </div>
+              <div style={{ fontWeight: 700, fontSize: 13, color: '#111827', marginTop: 2 }}>
+                {station.stationName.split(',')[0]}
+              </div>
+              <div style={{ fontSize: 11, color: '#374151', marginTop: 3 }}>
+                City: <b>{station.city}</b> · AQI: <b style={{ color: '#0891B2' }}>{station.primaryAqiStatus}</b>
+              </div>
+              {station.parameters['PM2.5'] && (
+                <div style={{ fontSize: 11, color: '#4B5563', marginTop: 1 }}>
+                  PM2.5 Avg: <b>{station.parameters['PM2.5'].avg} µg/m³</b>
+                </div>
+              )}
+              {station.parameters['PM10'] && (
+                <div style={{ fontSize: 11, color: '#4B5563' }}>
+                  PM10 Avg: <b>{station.parameters['PM10'].avg} µg/m³</b>
+                </div>
+              )}
+              <div style={{ fontSize: 9, color: '#9CA3AF', marginTop: 3 }}>
+                48 half-hour telemetry intervals recorded
+              </div>
+            </div>
+          </Tooltip>
+        </CircleMarker>
+      ))}
+
+      {/* CGWB Groundwater Monitoring Clusters */}
+      {groundwaterWellsData.districts.map((d) => (
+        d.centerLat && d.centerLng && (
+          <CircleMarker
+            key={d.district}
+            center={[d.centerLat, d.centerLng]}
+            radius={6}
+            pathOptions={{
+              fillColor: '#2563EB',
+              fillOpacity: 0.85,
+              color: '#ffffff',
+              weight: 1.5,
+            }}
+          >
+            <Tooltip direction="top" offset={[0, -6]}>
+              <div style={{ minWidth: 160 }}>
+                <div style={{ fontSize: 9, fontWeight: 700, color: '#2563EB', textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                  CGWB Groundwater Well Network
+                </div>
+                <div style={{ fontWeight: 700, fontSize: 13, color: '#111827', marginTop: 2 }}>
+                  {d.district} District
+                </div>
+                <div style={{ fontSize: 11, color: '#374151', marginTop: 3 }}>
+                  Avg Water Depth: <b>{d.avgDtwlMbgl} mbgl</b>
+                </div>
+                <div style={{ fontSize: 10, color: '#6B7280' }}>
+                  {d.totalWells} wells monitored · {d.riskCategory}
+                </div>
+              </div>
+            </Tooltip>
+          </CircleMarker>
+        )
+      ))}
+    </>
+  );
+}
+
 // ─── Choropleth layer ─────────────────────────────────────────────────────────
 
 function ChoroplethLayer({ factor }) {
@@ -161,6 +249,7 @@ const FACTOR_OPTIONS = [
 export default function IndiaMap({ compact = false, defaultFactor = 'overall', showControls = true }) {
   const [factor, setFactor]   = useState(defaultFactor);
   const [selected, setSelected] = useState(null);
+  const [showSensors, setShowSensors] = useState(true);
   const selectedData = selected ? scoreByCode[selected] : null;
 
   const height = compact ? '320px' : '100%';
@@ -172,27 +261,49 @@ export default function IndiaMap({ compact = false, defaultFactor = 'overall', s
         <div style={{
           display: 'flex', gap: 8, padding: '8px 12px',
           background: '#fff', borderBottom: '1px solid #e5e7eb',
+          alignItems: 'center', justifyContent: 'space-between',
           flexWrap: 'wrap', zIndex: 1000,
         }}>
-          {FACTOR_OPTIONS.map((opt) => (
-            <button
-              key={opt.value}
-              onClick={() => setFactor(opt.value)}
-              style={{
-                padding: '4px 12px',
-                borderRadius: 999,
-                fontSize: 12,
-                fontWeight: 600,
-                border: factor === opt.value ? '2px solid #3B82F6' : '1px solid #d1d5db',
-                background: factor === opt.value ? '#EFF6FF' : '#fff',
-                color: factor === opt.value ? '#1d4ed8' : '#374151',
-                cursor: 'pointer',
-                transition: 'all .15s',
-              }}
-            >
-              {opt.label}
-            </button>
-          ))}
+          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+            {FACTOR_OPTIONS.map((opt) => (
+              <button
+                key={opt.value}
+                onClick={() => setFactor(opt.value)}
+                style={{
+                  padding: '4px 12px',
+                  borderRadius: 999,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  border: factor === opt.value ? '2px solid #3B82F6' : '1px solid #d1d5db',
+                  background: factor === opt.value ? '#EFF6FF' : '#fff',
+                  color: factor === opt.value ? '#1d4ed8' : '#374151',
+                  cursor: 'pointer',
+                  transition: 'all .15s',
+                }}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={() => setShowSensors(!showSensors)}
+            style={{
+              padding: '4px 12px',
+              borderRadius: 8,
+              fontSize: 11,
+              fontWeight: 700,
+              background: showSensors ? '#0284C7' : '#F3F4F6',
+              color: showSensors ? '#fff' : '#4B5563',
+              border: 'none',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 5,
+            }}
+          >
+            <span>📡</span> {showSensors ? 'Hide Sensors & Wells' : 'Show Sensors & Wells (798 Sites)'}
+          </button>
         </div>
       )}
 
@@ -212,6 +323,7 @@ export default function IndiaMap({ compact = false, defaultFactor = 'overall', s
           />
           <ChoroplethLayer factor={factor} />
           <ScoreMarkers onSelect={setSelected} selected={selected} factor={factor} />
+          <SensorMarkers showSensors={showSensors} />
         </MapContainer>
 
         {/* Legend */}

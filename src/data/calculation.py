@@ -325,9 +325,26 @@ def assign_map_colour(score):
     return "#C62828"
 
 
+def assign_grade(score):
+    if pd.isna(score):
+        return "N/A"
+    if score <= 25:
+        return "A"
+    if score <= 50:
+        return "B"
+    if score <= 75:
+        return "C"
+    return "D"
+
+
 state_scores["risk_band"] = (
     state_scores["overall_score"]
     .apply(assign_risk_band)
+)
+
+state_scores["grade"] = (
+    state_scores["overall_score"]
+    .apply(assign_grade)
 )
 
 state_scores["map_colour"] = (
@@ -422,12 +439,20 @@ state_scores["top_pressure_dimensions"] = state_scores.apply(
 # 12. Reorder and export final outputs
 # --------------------------------------------------
 
+# Merge capital coordinates and region from states.csv
+state_scores = state_scores.merge(
+    states[["state_code", "region", "capital_lat", "capital_lng"]],
+    on="state_code",
+    how="left"
+)
+
 output_columns = [
     "state_code",
     "state_name",
     "year",
     "overall_score",
     "risk_band",
+    "grade",
     "map_colour",
     "dimensions_available",
     "coverage_pct",
@@ -436,7 +461,10 @@ output_columns = [
     "groundwater_score",
     "fertiliser_nutrients_score",
     "hazardous_waste_score",
-    "top_pressure_dimensions"
+    "top_pressure_dimensions",
+    "region",
+    "capital_lat",
+    "capital_lng"
 ]
 
 state_scores = state_scores[
@@ -449,6 +477,23 @@ state_scores = state_scores[
 state_scores.to_csv(
     "state_scores.csv",
     index=False
+)
+state_scores.to_json(
+    "stateScores.json",
+    orient="records",
+    indent=2
+)
+
+# Also export indicator_scores and dimension_scores to JSON for frontend usage
+indicator_scores.to_json(
+    "indicatorScores.json",
+    orient="records",
+    indent=2
+)
+dimension_scores.to_json(
+    "dimensionScores.json",
+    orient="records",
+    indent=2
 )
 
 # --------------------------------------------------
@@ -503,14 +548,20 @@ professional_heatmap.to_csv(
 # --------------------------------------------------
 
 print("Created files:")
-print("- indicator_scores.csv")
-print("- dimension_scores.csv")
-print("- state_scores.csv")
+print("- indicator_scores.csv & indicatorScores.json")
+print("- dimension_scores.csv & dimensionScores.json")
+print("- state_scores.csv & stateScores.json")
 print("- citizen_scores.csv")
 print("- professional_heatmap.csv")
 
-print("\nCitizen output:")
-display(citizen_scores)
+print("\nCitizen output (sample):")
+try:
+    display(citizen_scores.head(6))
+except NameError:
+    print(citizen_scores.head(6))
 
-print("\nProfessional heatmap output:")
-display(professional_heatmap)
+print("\nProfessional heatmap output (sample):")
+try:
+    display(professional_heatmap.head(6))
+except NameError:
+    print(professional_heatmap.head(6))

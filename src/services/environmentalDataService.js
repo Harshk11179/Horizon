@@ -34,6 +34,9 @@ import suggestionsData from '@data/suggestions.json';
 import projectTypesData from '@data/projectTypes.json';
 import alertsData from '@data/alerts.json';
 import citiesData from '@data/cities.json';
+import airQualityStationsData from '@data/airQualityStations.json';
+import groundwaterWellsData from '@data/groundwaterWells.json';
+import forestCoverDistrictsData from '@data/forestCoverDistricts.json';
 
 // Simulated network latency. Kept small and consistent so loading-state
 // UI (skeletons, fade-ins) gets exercised during development without
@@ -218,4 +221,28 @@ export async function getProfessionalAssessment(locationId, projectTypeId) {
     biodiversitySensitivity: template.biodiversitySensitivity,
     recommendation: template.recommendation,
   });
+}
+
+/**
+ * Returns continuous ambient air quality telemetry from CPCB monitoring stations
+ * (e.g. Bandra Kurla Complex IITM, Sector-2E Kalamboli MPCB, Powai MPCB).
+ */
+export async function getAirQualityTelemetry() {
+  return resolveAfterLatency(airQualityStationsData);
+}
+
+/**
+ * Returns Central Ground Water Board (CGWB) monitoring network data
+ * including 798 monitored wells and 16-district depth to water level statistics.
+ */
+export async function getGroundwaterNetwork() {
+  return resolveAfterLatency(groundwaterWellsData);
+}
+
+/**
+ * Returns Forest Survey of India (FSI) 36-district canopy density assessment
+ * and forest cover variables for Maharashtra.
+ */
+export async function getForestCoverDistricts() {
+  return resolveAfterLatency(forestCoverDistrictsData);
 }

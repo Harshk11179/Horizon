@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import IndiaMap from './IndiaMap';
 import CommunityActionsModal from './CommunityActionsModal';
+import DistrictTelemetryView from './DistrictTelemetryView';
 import { latestStateScores, pressureColour, riskBand } from '@hooks/useStateScores';
 
 const GRADE_COLOR = { A: '#2E7D32', B: '#F9A825', C: '#E65100', D: '#B71C1C' };
@@ -191,6 +192,9 @@ export default function CitizenView() {
           );
         })}
       </div>
+
+      {/* Ground-Truth Empirical Telemetry (Air Quality, Groundwater, Forest Cover) */}
+      <DistrictTelemetryView mode="citizen" defaultSection="air" />
 
       {/* Enhanced CTA Section */}
       <motion.div 

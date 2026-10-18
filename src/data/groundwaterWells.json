@@ -1,0 +1,1755 @@
+{
+  "totalWellsMonitored": 798,
+  "districtsCovered": 16,
+  "stateAvgDtwlMbgl": 5.63,
+  "monitoringPeriod": "January 2026",
+  "sourceAgency": "Central Ground Water Board (CGWB) & GSDA Maharashtra",
+  "districts": [
+    {
+      "district": "Akola",
+      "state": "Maharashtra",
+      "totalWells": 26,
+      "avgDtwlMbgl": 8.1,
+      "medianDtwlMbgl": 6.4,
+      "minDtwlMbgl": 1.7,
+      "maxDtwlMbgl": 28.5,
+      "blocksCount": 7,
+      "villagesCount": 26,
+      "shallowCount": 10,
+      "moderateCount": 10,
+      "deepCount": 4,
+      "criticalCount": 2,
+      "riskCategory": "Semi-Critical / Stress",
+      "pressureScore": 65,
+      "centerLat": 20.709,
+      "centerLng": 77.057
+    },
+    {
+      "district": "Buldhana",
+      "state": "Maharashtra",
+      "totalWells": 44,
+      "avgDtwlMbgl": 7.9,
+      "medianDtwlMbgl": 6.54,
+      "minDtwlMbgl": 1.1,
+      "maxDtwlMbgl": 36.3,
+      "blocksCount": 13,
+      "villagesCount": 44,
+      "shallowCount": 16,
+      "moderateCount": 18,
+      "deepCount": 7,
+      "criticalCount": 3,
+      "riskCategory": "Moderate / Sensitive",
+      "pressureScore": 48,
+      "centerLat": 20.5634,
+      "centerLng": 76.4351
+    },
+    {
+      "district": "Hingoli",
+      "state": "Maharashtra",
+      "totalWells": 32,
+      "avgDtwlMbgl": 6.68,
+      "medianDtwlMbgl": 6.2,
+      "minDtwlMbgl": 1.27,
+      "maxDtwlMbgl": 15.55,
+      "blocksCount": 5,
+      "villagesCount": 32,
+      "shallowCount": 11,
+      "moderateCount": 14,
+      "deepCount": 7,
+      "criticalCount": 0,
+      "riskCategory": "Moderate / Sensitive",
+      "pressureScore": 48,
+      "centerLat": 19.5856,
+      "centerLng": 77.113
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "state": "Maharashtra",
+      "totalWells": 137,
+      "avgDtwlMbgl": 6.27,
+      "medianDtwlMbgl": 5.33,
+      "minDtwlMbgl": 0.51,
+      "maxDtwlMbgl": 43.24,
+      "blocksCount": 9,
+      "villagesCount": 133,
+      "shallowCount": 65,
+      "moderateCount": 51,
+      "deepCount": 20,
+      "criticalCount": 1,
+      "riskCategory": "Moderate / Sensitive",
+      "pressureScore": 48,
+      "centerLat": 19.9683,
+      "centerLng": 75.2698
+    },
+    {
+      "district": "Ahmednagar",
+      "state": "Maharashtra",
+      "totalWells": 83,
+      "avgDtwlMbgl": 6.24,
+      "medianDtwlMbgl": 5.2,
+      "minDtwlMbgl": 0.51,
+      "maxDtwlMbgl": 30.43,
+      "blocksCount": 9,
+      "villagesCount": 83,
+      "shallowCount": 41,
+      "moderateCount": 29,
+      "deepCount": 12,
+      "criticalCount": 1,
+      "riskCategory": "Moderate / Sensitive",
+      "pressureScore": 48,
+      "centerLat": 19.274,
+      "centerLng": 74.8542
+    },
+    {
+      "district": "Dhule",
+      "state": "Maharashtra",
+      "totalWells": 38,
+      "avgDtwlMbgl": 5.95,
+      "medianDtwlMbgl": 4.45,
+      "minDtwlMbgl": 1.92,
+      "maxDtwlMbgl": 23.25,
+      "blocksCount": 4,
+      "villagesCount": 38,
+      "shallowCount": 23,
+      "moderateCount": 11,
+      "deepCount": 2,
+      "criticalCount": 2,
+      "riskCategory": "Moderate / Sensitive",
+      "pressureScore": 48,
+      "centerLat": 21.1112,
+      "centerLng": 74.6184
+    },
+    {
+      "district": "Beed",
+      "state": "Maharashtra",
+      "totalWells": 64,
+      "avgDtwlMbgl": 5.77,
+      "medianDtwlMbgl": 4.95,
+      "minDtwlMbgl": 1.15,
+      "maxDtwlMbgl": 17.3,
+      "blocksCount": 10,
+      "villagesCount": 64,
+      "shallowCount": 34,
+      "moderateCount": 23,
+      "deepCount": 7,
+      "criticalCount": 0,
+      "riskCategory": "Moderate / Sensitive",
+      "pressureScore": 48,
+      "centerLat": 18.9326,
+      "centerLng": 75.8468
+    },
+    {
+      "district": "Jalna",
+      "state": "Maharashtra",
+      "totalWells": 46,
+      "avgDtwlMbgl": 5.46,
+      "medianDtwlMbgl": 5,
+      "minDtwlMbgl": 1,
+      "maxDtwlMbgl": 14.3,
+      "blocksCount": 8,
+      "villagesCount": 45,
+      "shallowCount": 23,
+      "moderateCount": 18,
+      "deepCount": 5,
+      "criticalCount": 0,
+      "riskCategory": "Moderate / Sensitive",
+      "pressureScore": 48,
+      "centerLat": 19.8825,
+      "centerLng": 75.9318
+    },
+    {
+      "district": "Gondia",
+      "state": "Maharashtra",
+      "totalWells": 20,
+      "avgDtwlMbgl": 5.26,
+      "medianDtwlMbgl": 4.9,
+      "minDtwlMbgl": 1.7,
+      "maxDtwlMbgl": 11.5,
+      "blocksCount": 6,
+      "villagesCount": 20,
+      "shallowCount": 12,
+      "moderateCount": 5,
+      "deepCount": 3,
+      "criticalCount": 0,
+      "riskCategory": "Moderate / Sensitive",
+      "pressureScore": 48,
+      "centerLat": 21.3041,
+      "centerLng": 80.1702
+    },
+    {
+      "district": "Jalgaon",
+      "state": "Maharashtra",
+      "totalWells": 96,
+      "avgDtwlMbgl": 5.06,
+      "medianDtwlMbgl": 4.51,
+      "minDtwlMbgl": 0.55,
+      "maxDtwlMbgl": 17.14,
+      "blocksCount": 13,
+      "villagesCount": 94,
+      "shallowCount": 54,
+      "moderateCount": 35,
+      "deepCount": 7,
+      "criticalCount": 0,
+      "riskCategory": "Moderate / Sensitive",
+      "pressureScore": 48,
+      "centerLat": 20.7642,
+      "centerLng": 75.3393
+    },
+    {
+      "district": "Dharashiv",
+      "state": "Maharashtra",
+      "totalWells": 17,
+      "avgDtwlMbgl": 4.95,
+      "medianDtwlMbgl": 4.6,
+      "minDtwlMbgl": 2.4,
+      "maxDtwlMbgl": 10,
+      "blocksCount": 6,
+      "villagesCount": 17,
+      "shallowCount": 10,
+      "moderateCount": 7,
+      "deepCount": 0,
+      "criticalCount": 0,
+      "riskCategory": "Safe / Abundant Aquifer",
+      "pressureScore": 25,
+      "centerLat": 18.1093,
+      "centerLng": 76.0744
+    },
+    {
+      "district": "Amravati",
+      "state": "Maharashtra",
+      "totalWells": 55,
+      "avgDtwlMbgl": 4.89,
+      "medianDtwlMbgl": 4.2,
+      "minDtwlMbgl": 1.25,
+      "maxDtwlMbgl": 19.39,
+      "blocksCount": 11,
+      "villagesCount": 55,
+      "shallowCount": 34,
+      "moderateCount": 18,
+      "deepCount": 3,
+      "criticalCount": 0,
+      "riskCategory": "Safe / Abundant Aquifer",
+      "pressureScore": 25,
+      "centerLat": 21.0151,
+      "centerLng": 77.67
+    },
+    {
+      "district": "Gadchiroli",
+      "state": "Maharashtra",
+      "totalWells": 38,
+      "avgDtwlMbgl": 4.5,
+      "medianDtwlMbgl": 4.6,
+      "minDtwlMbgl": 1.2,
+      "maxDtwlMbgl": 8,
+      "blocksCount": 7,
+      "villagesCount": 37,
+      "shallowCount": 22,
+      "moderateCount": 16,
+      "deepCount": 0,
+      "criticalCount": 0,
+      "riskCategory": "Safe / Abundant Aquifer",
+      "pressureScore": 25,
+      "centerLat": 19.9913,
+      "centerLng": 80.0683
+    },
+    {
+      "district": "Chandrapur",
+      "state": "Maharashtra",
+      "totalWells": 56,
+      "avgDtwlMbgl": 3.93,
+      "medianDtwlMbgl": 3.6,
+      "minDtwlMbgl": 0.5,
+      "maxDtwlMbgl": 11.2,
+      "blocksCount": 13,
+      "villagesCount": 56,
+      "shallowCount": 41,
+      "moderateCount": 14,
+      "deepCount": 1,
+      "criticalCount": 0,
+      "riskCategory": "Safe / Abundant Aquifer",
+      "pressureScore": 25,
+      "centerLat": 20.1107,
+      "centerLng": 79.4197
+    },
+    {
+      "district": "Kolhapur",
+      "state": "Maharashtra",
+      "totalWells": 22,
+      "avgDtwlMbgl": 3.68,
+      "medianDtwlMbgl": 2.8,
+      "minDtwlMbgl": 0.16,
+      "maxDtwlMbgl": 13.44,
+      "blocksCount": 8,
+      "villagesCount": 22,
+      "shallowCount": 16,
+      "moderateCount": 5,
+      "deepCount": 1,
+      "criticalCount": 0,
+      "riskCategory": "Safe / Abundant Aquifer",
+      "pressureScore": 25,
+      "centerLat": 16.3631,
+      "centerLng": 74.204
+    },
+    {
+      "district": "Bhandara",
+      "state": "Maharashtra",
+      "totalWells": 24,
+      "avgDtwlMbgl": 3.48,
+      "medianDtwlMbgl": 3.2,
+      "minDtwlMbgl": 1,
+      "maxDtwlMbgl": 8.9,
+      "blocksCount": 7,
+      "villagesCount": 24,
+      "shallowCount": 22,
+      "moderateCount": 2,
+      "deepCount": 0,
+      "criticalCount": 0,
+      "riskCategory": "Safe / Abundant Aquifer",
+      "pressureScore": 25,
+      "centerLat": 21.1549,
+      "centerLng": 79.7194
+    }
+  ],
+  "sampleWells": [
+    {
+      "district": "Ahmednagar",
+      "block": "Nevasa",
+      "village": "Bhanas Hivre",
+      "lat": 19.48944,
+      "lng": 74.96722,
+      "dtwl": 1.85,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Nevasa",
+      "village": "Nevasa",
+      "lat": 19.55833,
+      "lng": 74.92111,
+      "dtwl": 7.85,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Nevasa",
+      "village": "Soundala",
+      "lat": 19.45861,
+      "lng": 75.02556,
+      "dtwl": 6.4,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Parner",
+      "village": "Katalwede",
+      "lat": 19.22,
+      "lng": 74.20139,
+      "dtwl": 5.84,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Parner",
+      "village": "Wadgaon Darya",
+      "lat": 19.09972,
+      "lng": 74.34167,
+      "dtwl": 12.15,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Pathardi",
+      "village": "Manikdaundi",
+      "lat": 19.08656,
+      "lng": 75.15141,
+      "dtwl": 12.01,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Pathardi",
+      "village": "Sakegaon",
+      "lat": 19.24344,
+      "lng": 75.16703,
+      "dtwl": 1.83,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Rahata",
+      "village": "Shingave",
+      "lat": 19.79942,
+      "lng": 74.55622,
+      "dtwl": 3.23,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Rahuri",
+      "village": "Rahuri",
+      "lat": 19.38889,
+      "lng": 74.65833,
+      "dtwl": 11.6,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Sangamner",
+      "village": "Junegaon",
+      "lat": 19.70722,
+      "lng": 74.30833,
+      "dtwl": 3.12,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Shevgaon",
+      "village": "Ankhgaon Titarfa",
+      "lat": 19.26758,
+      "lng": 75.28297,
+      "dtwl": 4.61,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Shevgaon",
+      "village": "Bodhke",
+      "lat": 19.41833,
+      "lng": 75.23678,
+      "dtwl": 8.11,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Shevgaon",
+      "village": "Erandgaon Bhagwat",
+      "lat": 19.4295,
+      "lng": 75.28589,
+      "dtwl": 6.21,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Shevgaon",
+      "village": "Mungi",
+      "lat": 19.40886,
+      "lng": 75.44581,
+      "dtwl": 7.49,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Shrigonda",
+      "village": "Bhangaon",
+      "lat": 18.71333,
+      "lng": 74.76139,
+      "dtwl": 5.2,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Shrigonda",
+      "village": "Kasti",
+      "lat": 18.55528,
+      "lng": 74.60194,
+      "dtwl": 12.5,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Ahmednagar",
+      "block": "Shrirampur",
+      "village": "Khokar",
+      "lat": 19.61583,
+      "lng": 74.74333,
+      "dtwl": 3.4,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Akola",
+      "block": "Akola",
+      "village": "Lakhanwada",
+      "lat": 20.60722,
+      "lng": 76.98306,
+      "dtwl": 13.65,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Akola",
+      "block": "Akot",
+      "village": "Raundala",
+      "lat": 20.9775,
+      "lng": 76.96833,
+      "dtwl": 11,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Akola",
+      "block": "Barshitakli",
+      "village": "Hatola",
+      "lat": 20.50639,
+      "lng": 77.20444,
+      "dtwl": 3.6,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Akola",
+      "block": "Murtijapur",
+      "village": "Murtijapur",
+      "lat": 20.73472,
+      "lng": 77.37139,
+      "dtwl": 4.64,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Akola",
+      "block": "Patur",
+      "village": "Pastul",
+      "lat": 20.43472,
+      "lng": 76.99667,
+      "dtwl": 7.5,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Amravati",
+      "block": "Amravati",
+      "village": "Chanduri Pimpri",
+      "lat": 20.89372,
+      "lng": 77.70995,
+      "dtwl": 3.98,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Amravati",
+      "block": "Amravati",
+      "village": "Nandgaon Peth",
+      "lat": 21.00903,
+      "lng": 77.82561,
+      "dtwl": 3.03,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Amravati",
+      "block": "Chandur Ril",
+      "village": "Dhamangaon (Rly)",
+      "lat": 20.81667,
+      "lng": 78.1375,
+      "dtwl": 2.21,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Amravati",
+      "block": "Chikhaldara",
+      "village": "Jarida",
+      "lat": 21.63417,
+      "lng": 77.48222,
+      "dtwl": 2.3,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Amravati",
+      "block": "Daryapur",
+      "village": "Pimplod",
+      "lat": 20.95639,
+      "lng": 77.18945,
+      "dtwl": 6.25,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Amravati",
+      "block": "Dhamangaon Ril",
+      "village": "Mangrul Dastagir",
+      "lat": 20.83103,
+      "lng": 78.2347,
+      "dtwl": 4.07,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Amravati",
+      "block": "Dharni",
+      "village": "Harisal",
+      "lat": 21.53333,
+      "lng": 77.11667,
+      "dtwl": 6.45,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Amravati",
+      "block": "Morshi",
+      "village": "Gorala",
+      "lat": 21.14639,
+      "lng": 77.93,
+      "dtwl": 6.2,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Amravati",
+      "block": "Nandgaon Kh",
+      "village": "Lohogaon",
+      "lat": 20.59567,
+      "lng": 77.68742,
+      "dtwl": 5.15,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Amravati",
+      "block": "Nandgaon Kh",
+      "village": "Nandgaon Khandesar ITI",
+      "lat": 20.68593,
+      "lng": 77.83869,
+      "dtwl": 7.29,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Amravati",
+      "block": "Nandgaon Kh",
+      "village": "Takli Gilba",
+      "lat": 20.69428,
+      "lng": 77.69633,
+      "dtwl": 4.34,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Ambajogai",
+      "village": "Dharmapuri",
+      "lat": 18.73333,
+      "lng": 76.64445,
+      "dtwl": 4.8,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Ambajogai",
+      "village": "Soundad",
+      "lat": 18.735,
+      "lng": 76.66084,
+      "dtwl": 6.05,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Ashti",
+      "village": "Kasari",
+      "lat": 18.82222,
+      "lng": 75.12361,
+      "dtwl": 3.8,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Beed",
+      "village": "Bavi",
+      "lat": 18.98028,
+      "lng": 76.12222,
+      "dtwl": 5.9,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Beed",
+      "village": "Mauj",
+      "lat": 18.96667,
+      "lng": 75.88333,
+      "dtwl": 3.05,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Georai",
+      "village": "Kapildhar",
+      "lat": 18.84472,
+      "lng": 75.74306,
+      "dtwl": 5.78,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Georai",
+      "village": "Shirsadevi",
+      "lat": 19.20278,
+      "lng": 75.86278,
+      "dtwl": 5.06,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Georai",
+      "village": "Vasatnagar",
+      "lat": 19.13389,
+      "lng": 75.81889,
+      "dtwl": 7.22,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Kaij",
+      "village": "Uttareshwar Pimpri",
+      "lat": 18.68111,
+      "lng": 75.94861,
+      "dtwl": 3.3,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Majalgaon",
+      "village": "Ramnagar Tanda",
+      "lat": 19.17167,
+      "lng": 76.29972,
+      "dtwl": 8.05,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Patoda",
+      "village": "Chumbli",
+      "lat": 18.87778,
+      "lng": 75.46611,
+      "dtwl": 17.3,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Patoda",
+      "village": "Naygaon",
+      "lat": 18.91333,
+      "lng": 75.61195,
+      "dtwl": 2.33,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Beed",
+      "block": "Shirur ( Ka )",
+      "village": "Dhisalewadi",
+      "lat": 18.99361,
+      "lng": 75.515,
+      "dtwl": 8.2,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Bhandara",
+      "block": "Bhandara",
+      "village": "Daodipar Khapa",
+      "lat": 21.1,
+      "lng": 79.68333,
+      "dtwl": 2.08,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Bhandara",
+      "block": "Lakhandur",
+      "village": "Palandur",
+      "lat": 20.91806,
+      "lng": 79.85973,
+      "dtwl": 2.45,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Bhandara",
+      "block": "Pauni",
+      "village": "Kanhalgaon",
+      "lat": 20.69306,
+      "lng": 79.66861,
+      "dtwl": 1.1,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Bhandara",
+      "block": "Sakoli",
+      "village": "Sakra",
+      "lat": 21.00917,
+      "lng": 79.97611,
+      "dtwl": 2.4,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Bhandara",
+      "block": "Tumsar",
+      "village": "Paunarkhairi",
+      "lat": 21.535,
+      "lng": 79.70472,
+      "dtwl": 1,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Buldhana",
+      "block": "Chikhli",
+      "village": "Borgaon Wasu",
+      "lat": 20.35,
+      "lng": 76.28333,
+      "dtwl": 4,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Buldhana",
+      "block": "D. Raja",
+      "village": "Malagi",
+      "lat": 20.27083,
+      "lng": 76.20889,
+      "dtwl": 9.45,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Buldhana",
+      "block": "Khamgaon",
+      "village": "Atali",
+      "lat": 20.55833,
+      "lng": 76.64555,
+      "dtwl": 1.1,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Buldhana",
+      "block": "Khamgaon",
+      "village": "Palshi Bk",
+      "lat": 20.60278,
+      "lng": 76.73583,
+      "dtwl": 7.5,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Buldhana",
+      "block": "Lonar",
+      "village": "Lonar",
+      "lat": 19.98333,
+      "lng": 76.55,
+      "dtwl": 5,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Buldhana",
+      "block": "Mehkar",
+      "village": "Parkhed",
+      "lat": 20.40944,
+      "lng": 76.64555,
+      "dtwl": 5.37,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Buldhana",
+      "block": "Nandura",
+      "village": "Kati",
+      "lat": 20.83639,
+      "lng": 76.28194,
+      "dtwl": 36.3,
+      "category": "Critical (>20m)"
+    },
+    {
+      "district": "Buldhana",
+      "block": "Sangrampur",
+      "village": "Kumbarkhed",
+      "lat": 20.95778,
+      "lng": 76.64306,
+      "dtwl": 4.6,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Buldhana",
+      "block": "Sindkhedraja",
+      "village": "Saokhed Tejan",
+      "lat": 19.97028,
+      "lng": 76.18278,
+      "dtwl": 6.2,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Chandrapur",
+      "block": "Brahmapuri",
+      "village": "Mendki",
+      "lat": 20.46667,
+      "lng": 79.83334,
+      "dtwl": 4.15,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chandrapur",
+      "block": "Chandrapur",
+      "village": "Nandegur",
+      "lat": 20.05,
+      "lng": 79.51667,
+      "dtwl": 5.3,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Chandrapur",
+      "block": "Chimur",
+      "village": "Shankarpur",
+      "lat": 20.64583,
+      "lng": 79.53333,
+      "dtwl": 4.55,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chandrapur",
+      "block": "Gondpipri",
+      "village": "Watarna",
+      "lat": 19.6,
+      "lng": 79.65,
+      "dtwl": 3.15,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chandrapur",
+      "block": "Mul",
+      "village": "Sawali",
+      "lat": 20.08333,
+      "lng": 79.78333,
+      "dtwl": 2.3,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chandrapur",
+      "block": "Nagbhid",
+      "village": "Nagbhid",
+      "lat": 20.58333,
+      "lng": 79.66666,
+      "dtwl": 4.75,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chandrapur",
+      "block": "Rajura",
+      "village": "Patan",
+      "lat": 19.62889,
+      "lng": 79.2,
+      "dtwl": 5.1,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Chandrapur",
+      "block": "Saoli",
+      "village": "Pardi",
+      "lat": 19.82972,
+      "lng": 79.225,
+      "dtwl": 3.4,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chandrapur",
+      "block": "Sindewahi",
+      "village": "Meha Bk",
+      "lat": 20.22139,
+      "lng": 79.885,
+      "dtwl": 5.1,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Chandrapur",
+      "block": "Warora",
+      "village": "Chargaon",
+      "lat": 20.38972,
+      "lng": 79.18833,
+      "dtwl": 3.6,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chandrapur",
+      "block": "Warora",
+      "village": "Wahangaon",
+      "lat": 20.48361,
+      "lng": 79.23361,
+      "dtwl": 5.7,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Aurangabad",
+      "village": "Aurangabad (MC)",
+      "lat": 19.88344,
+      "lng": 75.45417,
+      "dtwl": 4.36,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Aurangabad",
+      "village": "Golatgaon",
+      "lat": 19.84436,
+      "lng": 75.61894,
+      "dtwl": 43.24,
+      "category": "Critical (>20m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Aurangabad",
+      "village": "Karmad",
+      "lat": 19.87094,
+      "lng": 75.54041,
+      "dtwl": 5.43,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Aurangabad",
+      "village": "Mangrul",
+      "lat": 19.84372,
+      "lng": 75.55128,
+      "dtwl": 3.29,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Gangapur",
+      "village": "Bhiw Dhanora",
+      "lat": 19.65581,
+      "lng": 75.10728,
+      "dtwl": 3.7,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Gangapur",
+      "village": "Gavlishivra",
+      "lat": 19.87967,
+      "lng": 75.06644,
+      "dtwl": 3.93,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Gangapur",
+      "village": "Lasur",
+      "lat": 19.91997,
+      "lng": 75.01915,
+      "dtwl": 4.16,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Gangapur",
+      "village": "Shivrai",
+      "lat": 19.79206,
+      "lng": 75.22183,
+      "dtwl": 9.22,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Kanand",
+      "village": "Devgaon",
+      "lat": 20.03472,
+      "lng": 75.03472,
+      "dtwl": 6.15,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Khultabad",
+      "village": "Bazar Sawangi",
+      "lat": 20.124,
+      "lng": 75.30825,
+      "dtwl": 6.03,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Paithan",
+      "village": "Adul Bk",
+      "lat": 19.71406,
+      "lng": 75.53569,
+      "dtwl": 2.56,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Paithan",
+      "village": "Dhakephal",
+      "lat": 19.58014,
+      "lng": 75.30147,
+      "dtwl": 7.48,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Paithan",
+      "village": "Kherda",
+      "lat": 19.57603,
+      "lng": 75.48111,
+      "dtwl": 4.66,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Paithan",
+      "village": "Pachod",
+      "lat": 19.57747,
+      "lng": 75.62675,
+      "dtwl": 3.41,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Paithan",
+      "village": "Warwandi Tanda-1",
+      "lat": 19.70936,
+      "lng": 75.40872,
+      "dtwl": 12.02,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Phulambri",
+      "village": "Ganori",
+      "lat": 20.04433,
+      "lng": 75.34439,
+      "dtwl": 5.65,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Phulambri",
+      "village": "Pathri",
+      "lat": 20.13181,
+      "lng": 75.4837,
+      "dtwl": 1.72,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Sillod",
+      "village": "Aalandh",
+      "lat": 20.19889,
+      "lng": 75.55361,
+      "dtwl": 10.04,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Sillod",
+      "village": "Dongargaon",
+      "lat": 20.33383,
+      "lng": 75.6797,
+      "dtwl": 2.56,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Sillod",
+      "village": "Nagad Tanda",
+      "lat": 20.30694,
+      "lng": 75.47472,
+      "dtwl": 4.7,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Sillod",
+      "village": "Undangaon",
+      "lat": 20.45867,
+      "lng": 75.66047,
+      "dtwl": 3.47,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Soegaon",
+      "village": "Rojwepur",
+      "lat": 20.51528,
+      "lng": 75.37139,
+      "dtwl": 4.45,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Vaijapur",
+      "village": "Borsar",
+      "lat": 20.01031,
+      "lng": 74.84864,
+      "dtwl": 0.82,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Vaijapur",
+      "village": "Kangoni",
+      "lat": 19.82564,
+      "lng": 74.66986,
+      "dtwl": 11.16,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Vaijapur",
+      "village": "Mali ghogargaon",
+      "lat": 19.75183,
+      "lng": 74.86633,
+      "dtwl": 3.33,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Vaijapur",
+      "village": "Sawandgaon",
+      "lat": 19.96425,
+      "lng": 74.82069,
+      "dtwl": 12.26,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "block": "Vaijapur",
+      "village": "Siddhapurvadi",
+      "lat": 19.85422,
+      "lng": 74.74331,
+      "dtwl": 7.43,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Dharashiv",
+      "block": "Bhoom",
+      "village": "Wakwad",
+      "lat": 18.51778,
+      "lng": 75.69583,
+      "dtwl": 3.7,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Dharashiv",
+      "block": "Omerga",
+      "village": "Umerga",
+      "lat": 17.84139,
+      "lng": 76.62334,
+      "dtwl": 2.5,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Dharashiv",
+      "block": "Tuljapur",
+      "village": "Andur",
+      "lat": 17.8325,
+      "lng": 76.24306,
+      "dtwl": 5.4,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Dharashiv",
+      "block": "Tuljapur",
+      "village": "Savargaon",
+      "lat": 17.88972,
+      "lng": 75.97083,
+      "dtwl": 4.9,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Dhule",
+      "block": "Dhule",
+      "village": "Laling",
+      "lat": 20.82083,
+      "lng": 74.74583,
+      "dtwl": 3.92,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Dhule",
+      "block": "Dhule",
+      "village": "Purmepada(Pur)",
+      "lat": 20.72833,
+      "lng": 74.7,
+      "dtwl": 4.62,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Dhule",
+      "block": "Sakri",
+      "village": "Chhadwel",
+      "lat": 21.19056,
+      "lng": 74.24472,
+      "dtwl": 11.38,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Dhule",
+      "block": "Sakri",
+      "village": "Nizampur",
+      "lat": 21.1,
+      "lng": 74.33028,
+      "dtwl": 4.59,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Dhule",
+      "block": "Shindkhede",
+      "village": "Dhavda",
+      "lat": 21.33778,
+      "lng": 74.4925,
+      "dtwl": 8.19,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Dhule",
+      "block": "Shindkhede",
+      "village": "Sahur",
+      "lat": 21.39417,
+      "lng": 74.59028,
+      "dtwl": 4.8,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Dhule",
+      "block": "Shirpur",
+      "village": "Sangavi",
+      "lat": 21.47194,
+      "lng": 74.99277,
+      "dtwl": 2.62,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Gadchiroli",
+      "block": "Aheri",
+      "village": "Elchil",
+      "lat": 19.51528,
+      "lng": 80.15722,
+      "dtwl": 4.6,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Gadchiroli",
+      "block": "Aheri",
+      "village": "Umanur",
+      "lat": 19.05,
+      "lng": 80.06667,
+      "dtwl": 7.6,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Gadchiroli",
+      "block": "Armori",
+      "village": "Shankarpur",
+      "lat": 20.62722,
+      "lng": 80.04056,
+      "dtwl": 4,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Gadchiroli",
+      "block": "Armori",
+      "village": "Wairagarh",
+      "lat": 20.43333,
+      "lng": 80.09167,
+      "dtwl": 5.6,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Gadchiroli",
+      "block": "Chamorshi",
+      "village": "Ghot",
+      "lat": 19.79167,
+      "lng": 79.98333,
+      "dtwl": 5.6,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Gadchiroli",
+      "block": "Dhanora",
+      "village": "Dhanora",
+      "lat": 20.26667,
+      "lng": 80.3,
+      "dtwl": 3.75,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Gadchiroli",
+      "block": "Gadchiroli",
+      "village": "Shivni",
+      "lat": 20.10528,
+      "lng": 79.99416,
+      "dtwl": 1.2,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Gadchiroli",
+      "block": "Kurkheda",
+      "village": "Uradi",
+      "lat": 20.61944,
+      "lng": 80.20834,
+      "dtwl": 1.3,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Gondia",
+      "block": "Arjuni Morgaon",
+      "village": "Dhabetekdi",
+      "lat": 20.79,
+      "lng": 79.96472,
+      "dtwl": 2.55,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Gondia",
+      "block": "Gondia",
+      "village": "Asoli",
+      "lat": 21.48333,
+      "lng": 80.26667,
+      "dtwl": 7.9,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Gondia",
+      "block": "Salekasa",
+      "village": "Darbada",
+      "lat": 21.30778,
+      "lng": 80.44417,
+      "dtwl": 2.8,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Gondia",
+      "block": "Tirora",
+      "village": "Navegaon Ii (Khurd)",
+      "lat": 21.34639,
+      "lng": 79.82166,
+      "dtwl": 4.92,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Hingoli",
+      "block": "Basmat",
+      "village": "Babhulgaon",
+      "lat": 19.26667,
+      "lng": 77.13333,
+      "dtwl": 7.25,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Hingoli",
+      "block": "Basmat",
+      "village": "Churawa",
+      "lat": 19.16972,
+      "lng": 77.13917,
+      "dtwl": 4,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Hingoli",
+      "block": "Hingoli",
+      "village": "Bhandewadi",
+      "lat": 19.80472,
+      "lng": 77.12833,
+      "dtwl": 2.25,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Hingoli",
+      "block": "Hingoli",
+      "village": "Narsi",
+      "lat": 19.75417,
+      "lng": 77.01389,
+      "dtwl": 7.15,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Hingoli",
+      "block": "Kalamnuri",
+      "village": "Dandegaon",
+      "lat": 19.43972,
+      "lng": 77.28917,
+      "dtwl": 3.2,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Hingoli",
+      "block": "Sengaon",
+      "village": "Aajegaon",
+      "lat": 19.8675,
+      "lng": 76.9275,
+      "dtwl": 15.2,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Amalner",
+      "village": "Dangar Budruk",
+      "lat": 20.96194,
+      "lng": 74.94695,
+      "dtwl": 2.88,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Amalner",
+      "village": "Wavade",
+      "lat": 21.06639,
+      "lng": 74.93111,
+      "dtwl": 2.68,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Bhadgaon",
+      "village": "Lon Pr Utran",
+      "lat": 20.72333,
+      "lng": 75.28722,
+      "dtwl": 0.78,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Bodwad",
+      "village": "Dapore Sirsoli",
+      "lat": 20.92222,
+      "lng": 75.52111,
+      "dtwl": 4.5,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Chalisgaon",
+      "village": "Halkhede",
+      "lat": 20.51667,
+      "lng": 75.10722,
+      "dtwl": 5,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Chalisgaon",
+      "village": "Khadaki Bk",
+      "lat": 20.43944,
+      "lng": 74.96861,
+      "dtwl": 2.39,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Chalisgaon",
+      "village": "Takali Pr Dehere",
+      "lat": 20.5175,
+      "lng": 74.86389,
+      "dtwl": 3.72,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Erandol",
+      "village": "Bhatkhede",
+      "lat": 20.82195,
+      "lng": 75.39584,
+      "dtwl": 4.51,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Erandol",
+      "village": "Ringangaon",
+      "lat": 20.95555,
+      "lng": 75.44305,
+      "dtwl": 4.81,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Jalgaon",
+      "village": "Jalgaon",
+      "lat": 20.98778,
+      "lng": 75.56917,
+      "dtwl": 1.75,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Jamner",
+      "village": "Ekulti bk",
+      "lat": 20.72361,
+      "lng": 75.60778,
+      "dtwl": 6.12,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Jamner",
+      "village": "Neri BK",
+      "lat": 20.84778,
+      "lng": 75.66472,
+      "dtwl": 2.82,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Jamner",
+      "village": "Samrod",
+      "lat": 20.74972,
+      "lng": 75.85833,
+      "dtwl": 5.3,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Jamner",
+      "village": "Tondapur",
+      "lat": 20.57778,
+      "lng": 75.80334,
+      "dtwl": 2.88,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Pachora",
+      "village": "Anturli Kh Pr Lohatar",
+      "lat": 20.64472,
+      "lng": 75.30417,
+      "dtwl": 2.11,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Pachora",
+      "village": "Kalamsare",
+      "lat": 20.70278,
+      "lng": 75.56416,
+      "dtwl": 6.97,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Pachora",
+      "village": "Nagardeola",
+      "lat": 20.56,
+      "lng": 75.20639,
+      "dtwl": 3,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Pachora",
+      "village": "Shindad",
+      "lat": 20.56917,
+      "lng": 75.43472,
+      "dtwl": 1.51,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalgaon",
+      "block": "Parola",
+      "village": "Rajwad",
+      "lat": 20.96639,
+      "lng": 75.20084,
+      "dtwl": 3.23,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalna",
+      "block": "Ambad",
+      "village": "Alamgaon",
+      "lat": 19.73111,
+      "lng": 75.77139,
+      "dtwl": 8.26,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Jalna",
+      "block": "Ambad",
+      "village": "Rui",
+      "lat": 19.49,
+      "lng": 75.85611,
+      "dtwl": 6.95,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Jalna",
+      "block": "Ambad",
+      "village": "Wadigodri",
+      "lat": 19.4675,
+      "lng": 75.74167,
+      "dtwl": 1.5,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalna",
+      "block": "Bhokardan",
+      "village": "Hasnabad",
+      "lat": 20.12694,
+      "lng": 75.69305,
+      "dtwl": 3,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalna",
+      "block": "Bhokardan",
+      "village": "Siphora",
+      "lat": 20.26028,
+      "lng": 75.85667,
+      "dtwl": 1,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalna",
+      "block": "Ghansawangi",
+      "village": "Soundalgaon Bhanegaon",
+      "lat": 19.35111,
+      "lng": 75.92555,
+      "dtwl": 3.67,
+      "category": "Shallow (<5m)"
+    },
+    {
+      "district": "Jalna",
+      "block": "Jafrabad",
+      "village": "Tembhurni",
+      "lat": 20.1075,
+      "lng": 75.98861,
+      "dtwl": 6.15,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Jalna",
+      "block": "Jalna",
+      "village": "Kalegaon",
+      "lat": 19.81667,
+      "lng": 75.98333,
+      "dtwl": 5.3,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Jalna",
+      "block": "Mantha",
+      "village": "Kathala Kh",
+      "lat": 19.72472,
+      "lng": 76.25611,
+      "dtwl": 5,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Jalna",
+      "block": "Partur",
+      "village": "Watur",
+      "lat": 19.67333,
+      "lng": 76.295,
+      "dtwl": 11.4,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Kolhapur",
+      "block": "Bhudargad",
+      "village": "Nitawade",
+      "lat": 16.23333,
+      "lng": 74.05,
+      "dtwl": 8.73,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Kolhapur",
+      "block": "Chandgad",
+      "village": "Patne",
+      "lat": 15.8675,
+      "lng": 74.23333,
+      "dtwl": 7.16,
+      "category": "Moderate (5-10m)"
+    },
+    {
+      "district": "Kolhapur",
+      "block": "Hatkanangale",
+      "village": "Bhendavade",
+      "lat": 16.85222,
+      "lng": 74.36639,
+      "dtwl": 13.44,
+      "category": "Deep (10-20m)"
+    },
+    {
+      "district": "Kolhapur",
+      "block": "Kagal",
+      "village": "Kaulage",
+      "lat": 16.44194,
+      "lng": 74.28416,
+      "dtwl": 2.8,
+      "category": "Shallow (<5m)"
+    }
+  ]
+}
